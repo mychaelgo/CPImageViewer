@@ -17,6 +17,8 @@ class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewContr
         
         if presenting is ImageControllerProtocol && presented is ImageControllerProtocol {
             interativeAnimator.wireToViewController(presented)
+            interativeAnimator.isPresented = true
+            animator.dismiss = false
             return animator
         }
         
@@ -25,7 +27,8 @@ class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewContr
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if animator.isReverse && dismissed is ImageControllerProtocol {
+        if dismissed is ImageControllerProtocol {
+            animator.dismiss = true
             return animator
         }
         
@@ -39,11 +42,21 @@ class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewContr
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if fromVC is ImageControllerProtocol && toVC is ImageControllerProtocol {
-            if operation == .Push || operation == .Pop {
+            if operation == .Push {
+                interativeAnimator.wireToViewController(toVC)
+                interativeAnimator.isPresented = false
+                animator.dismiss = false
+                return animator
+            } else if operation == .Pop {
+                animator.dismiss = true
                 return animator
             }
         }
         
         return nil
+    }
+    
+    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interativeAnimator.interactionInProgress ? interativeAnimator : nil
     }
 }

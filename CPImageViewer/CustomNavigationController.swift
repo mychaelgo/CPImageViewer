@@ -16,7 +16,6 @@ class CustomNavigationController: UINavigationController, ImageControllerProtoco
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.redColor()
     }
 
     override func didReceiveMemoryWarning() {

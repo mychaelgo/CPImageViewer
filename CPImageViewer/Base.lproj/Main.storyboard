@@ -43,10 +43,10 @@
             </objects>
             <point key="canvasLocation" x="1383" y="-4"/>
         </scene>
-        <!--Table View Controller-->
+        <!--TableView-->
         <scene sceneID="ix5-7V-PqX">
             <objects>
-                <tableViewController storyboardIdentifier="TableVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EYX-H2-0Uv" customClass="TableViewController" customModule="CPImageViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TableVC" title="TableView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EYX-H2-0Uv" customClass="TableViewController" customModule="CPImageViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hes-wn-n7L">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,10 +84,10 @@
             </objects>
             <point key="canvasLocation" x="1173" y="750"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--CollectionView-->
         <scene sceneID="2BC-l1-4ns">
             <objects>
-                <collectionViewController storyboardIdentifier="CollectionVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EmT-wE-DwE" customClass="CollectionViewController" customModule="CPImageViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="CollectionVC" title="CollectionView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EmT-wE-DwE" customClass="CollectionViewController" customModule="CPImageViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="vC1-WQ-JKo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -158,10 +158,10 @@
             </objects>
             <point key="canvasLocation" x="543" y="79"/>
         </scene>
-        <!--General View Controller-->
+        <!--General-->
         <scene sceneID="K6v-7S-XqH">
             <objects>
-                <viewController storyboardIdentifier="GeneralVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U8u-rO-BAx" customClass="GeneralViewController" customModule="CPImageViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GeneralVC" title="General" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U8u-rO-BAx" customClass="GeneralViewController" customModule="CPImageViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rqh-Od-WXC"/>
                         <viewControllerLayoutGuide type="bottom" id="0Yk-aX-AxF"/>

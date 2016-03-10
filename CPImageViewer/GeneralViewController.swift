@@ -21,12 +21,11 @@ class GeneralViewController: UIViewController, ImageControllerProtocol {
         // Do any additional setup after loading the view.
         
         self.view.backgroundColor = UIColor.whiteColor()
-        self.title = "Normal"
         
         imageView.frame = CGRectMake(60, 100, 100, 100)
         imageView.image = UIImage(named: "1")
         imageView.contentMode = .ScaleAspectFit
-        self.view.addSubview(imageView);
+        self.view.addSubview(imageView)
         addTapGestureToImageView()
         
         if let navi = self.navigationController as? CustomNavigationController {

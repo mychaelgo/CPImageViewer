@@ -23,17 +23,6 @@ class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestu
         return isPresented ? 0 : 64
     }
     
-    /*
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        self.modalPresentationStyle = .Custom
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    */
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -176,7 +165,7 @@ class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestu
     
     //MARK:- UIScrollViewDelegate
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return imageView;
+        return imageView
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {

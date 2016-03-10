@@ -14,8 +14,8 @@ import UIKit
 
 public class ImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
-    private var originalFrame = CGRectZero
-    private(set) public var isReverse = false
+    //private var originalFrame = CGRectZero
+    public var dismiss = false
     
     public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.3
@@ -27,23 +27,22 @@ public class ImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedT
         let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
         let containerView = transitionContext.containerView()
         
-        let toFrame = transitionContext.finalFrameForViewController(toVC!)
-        let backgroundView = UIView(frame: toFrame)
+        let finalFrame = transitionContext.finalFrameForViewController(toVC!)
+        let backgroundView = UIView(frame: finalFrame)
         backgroundView.backgroundColor = UIColor.blackColor()
         containerView?.addSubview(backgroundView)
         
-        let imageFromVC = fromVC as! ImageControllerProtocol
-        let imageToVC = toVC as! ImageControllerProtocol
-        let fromImageView = imageFromVC.imageView
-        let toImageView = imageToVC.imageView
+        let fromImageView = (fromVC as! ImageControllerProtocol).imageView
+        let toImageView = (toVC as! ImageControllerProtocol).imageView
         let fromFrame = fromImageView.convertRect(fromImageView.bounds, toView: containerView)
+        let originalFrame = toImageView.convertRect(toImageView.bounds, toView: containerView)
+        
         let newImageView = UIImageView(frame: fromFrame)
         newImageView.image = fromImageView.image
         newImageView.contentMode = .ScaleAspectFit
         containerView?.addSubview(newImageView)
         
-        if !isReverse {
-            originalFrame = fromFrame
+        if !dismiss {
             backgroundView.alpha = 0.0
             fromImageView.alpha = 0.0
         } else {
@@ -55,11 +54,11 @@ public class ImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedT
         
         let duration = transitionDuration(transitionContext)
         UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseInOut, animations: {
-            if !self.isReverse {
-                newImageView.frame = toFrame
+            if !self.dismiss {
+                newImageView.frame = finalFrame
                 backgroundView.alpha = 1.0
             } else {
-                newImageView.frame = self.originalFrame
+                newImageView.frame = originalFrame
                 backgroundView.alpha = 0.0
             }
             }, completion: { finished in
@@ -68,18 +67,19 @@ public class ImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedT
                 
                 let cancel = transitionContext.transitionWasCancelled()
                 
-                if !self.isReverse {
-                    containerView!.addSubview(toVC!.view)
+                if !self.dismiss {
+                    if cancel {
+                        fromImageView.alpha = 1.0
+                    } else {
+                        containerView!.addSubview(toVC!.view)
+                    }
                 } else {
                     if cancel {
                         fromVC!.view.alpha = 1.0
+                        toVC!.view.removeFromSuperview()
                     } else {
                         toImageView.alpha = 1.0
                     }
-                }
-    
-                if !cancel {
-                    self.isReverse = !self.isReverse
                 }
                 transitionContext.completeTransition(!cancel)
         })

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3553DFA51C8EFE4000BCB077 /* ImageViewerAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA11C8EFE4000BCB077 /* ImageViewerAnimationTransition.swift */; };
+		3553DFA61C8EFE4000BCB077 /* ImageViewerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA21C8EFE4000BCB077 /* ImageViewerAnimator.swift */; };
+		3553DFA71C8EFE4000BCB077 /* ImageViewerInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA31C8EFE4000BCB077 /* ImageViewerInteractiveTransition.swift */; };
+		3553DFA81C8EFE4000BCB077 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA41C8EFE4000BCB077 /* ImageViewerViewController.swift */; };
 		35DEA4151C8BAC3000869EDC /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DEA4141C8BAC3000869EDC /* CollectionViewCell.swift */; };
-		35DEA41B1C8C5AAF00869EDC /* ImageViewerAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DEA4171C8C5AAE00869EDC /* ImageViewerAnimationTransition.swift */; };
-		35DEA41C1C8C5AAF00869EDC /* ImageViewerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DEA4181C8C5AAE00869EDC /* ImageViewerAnimator.swift */; };
-		35DEA41D1C8C5AAF00869EDC /* ImageViewerInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DEA4191C8C5AAE00869EDC /* ImageViewerInteractiveTransition.swift */; };
-		35DEA41E1C8C5AAF00869EDC /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DEA41A1C8C5AAF00869EDC /* ImageViewerViewController.swift */; };
 		9501F8F41C814360004A8814 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9501F8F31C814360004A8814 /* CustomNavigationController.swift */; };
 		9501F8F61C81467C004A8814 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9501F8F51C81467C004A8814 /* CollectionViewController.swift */; };
 		95C55F781C81304900BD0E89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C55F761C81304900BD0E89 /* ViewController.swift */; };
@@ -24,11 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3553DFA11C8EFE4000BCB077 /* ImageViewerAnimationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerAnimationTransition.swift; sourceTree = "<group>"; };
+		3553DFA21C8EFE4000BCB077 /* ImageViewerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerAnimator.swift; sourceTree = "<group>"; };
+		3553DFA31C8EFE4000BCB077 /* ImageViewerInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerInteractiveTransition.swift; sourceTree = "<group>"; };
+		3553DFA41C8EFE4000BCB077 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		35DEA4141C8BAC3000869EDC /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		35DEA4171C8C5AAE00869EDC /* ImageViewerAnimationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerAnimationTransition.swift; sourceTree = "<group>"; };
-		35DEA4181C8C5AAE00869EDC /* ImageViewerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerAnimator.swift; sourceTree = "<group>"; };
-		35DEA4191C8C5AAE00869EDC /* ImageViewerInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerInteractiveTransition.swift; sourceTree = "<group>"; };
-		35DEA41A1C8C5AAF00869EDC /* ImageViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		9501F8F31C814360004A8814 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		9501F8F51C81467C004A8814 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		95C55F761C81304900BD0E89 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,13 +53,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		35DEA4161C8C5AAE00869EDC /* Classes */ = {
+		3553DFA01C8EFE4000BCB077 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				35DEA4171C8C5AAE00869EDC /* ImageViewerAnimationTransition.swift */,
-				35DEA4181C8C5AAE00869EDC /* ImageViewerAnimator.swift */,
-				35DEA4191C8C5AAE00869EDC /* ImageViewerInteractiveTransition.swift */,
-				35DEA41A1C8C5AAF00869EDC /* ImageViewerViewController.swift */,
+				3553DFA41C8EFE4000BCB077 /* ImageViewerViewController.swift */,
+				3553DFA21C8EFE4000BCB077 /* ImageViewerAnimator.swift */,
+				3553DFA11C8EFE4000BCB077 /* ImageViewerAnimationTransition.swift */,
+				3553DFA31C8EFE4000BCB077 /* ImageViewerInteractiveTransition.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -67,6 +67,7 @@
 		95D3A3061C71E26E003A750C = {
 			isa = PBXGroup;
 			children = (
+				3553DFA01C8EFE4000BCB077 /* Classes */,
 				95D3A3111C71E26F003A750C /* CPImageViewer */,
 				95D3A3101C71E26F003A750C /* Products */,
 			);
@@ -83,7 +84,6 @@
 		95D3A3111C71E26F003A750C /* CPImageViewer */ = {
 			isa = PBXGroup;
 			children = (
-				35DEA4161C8C5AAE00869EDC /* Classes */,
 				95D3A3121C71E26F003A750C /* AppDelegate.swift */,
 				95C55F761C81304900BD0E89 /* ViewController.swift */,
 				9501F8F31C814360004A8814 /* CustomNavigationController.swift */,
@@ -131,6 +131,7 @@
 				TargetAttributes = {
 					95D3A30E1C71E26F003A750C = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 5M6234DYMA;
 					};
 				};
 			};
@@ -170,17 +171,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35DEA41C1C8C5AAF00869EDC /* ImageViewerAnimator.swift in Sources */,
+				3553DFA61C8EFE4000BCB077 /* ImageViewerAnimator.swift in Sources */,
 				9501F8F61C81467C004A8814 /* CollectionViewController.swift in Sources */,
 				95C55F7F1C81313A00BD0E89 /* TableViewController.swift in Sources */,
-				35DEA41D1C8C5AAF00869EDC /* ImageViewerInteractiveTransition.swift in Sources */,
-				35DEA41E1C8C5AAF00869EDC /* ImageViewerViewController.swift in Sources */,
+				3553DFA71C8EFE4000BCB077 /* ImageViewerInteractiveTransition.swift in Sources */,
+				3553DFA81C8EFE4000BCB077 /* ImageViewerViewController.swift in Sources */,
 				95C55F781C81304900BD0E89 /* ViewController.swift in Sources */,
 				95C55F791C81304900BD0E89 /* GeneralViewController.swift in Sources */,
 				9501F8F41C814360004A8814 /* CustomNavigationController.swift in Sources */,
 				95D3A3131C71E26F003A750C /* AppDelegate.swift in Sources */,
 				35DEA4151C8BAC3000869EDC /* CollectionViewCell.swift in Sources */,
-				35DEA41B1C8C5AAF00869EDC /* ImageViewerAnimationTransition.swift in Sources */,
+				3553DFA51C8EFE4000BCB077 /* ImageViewerAnimationTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,11 +293,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CPImageViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zte.CPImageViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0afcc620-7b5f-44e1-a230-c88e568e87d6";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -304,11 +306,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CPImageViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zte.CPImageViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0afcc620-7b5f-44e1-a230-c88e568e87d6";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
