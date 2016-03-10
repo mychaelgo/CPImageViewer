@@ -1,2 +1,2 @@
 language: objective-c
-script: xcodebuild -project CPImageViewer.xcodeproj -target CPImageViewer -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+script: xcodebuild -project CPImageViewer.xcodeproj -target CPImageViewer -sdk iphonesimulator9.2 ONLY_ACTIVE_ARCH=NO
