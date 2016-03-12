@@ -6,7 +6,7 @@ before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - "./scripts/add-key.sh"
 script:
-- xcodebuild -project CPImageViewer.xcodeproj -target CPImageViewer -sdk iphoneos -configuration Release OBJROOT="$PWD/build" SYMROOT="$PWD/build" ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="${DEVELOPER_NAME}" PROVISIONING_PROFILE="${6092a63b-9d26-4b31-a677-ea5bd4d812fa}"
+- xcodebuild -project CPImageViewer.xcodeproj -target CPImageViewer -sdk iphoneos -configuration Release OBJROOT="$PWD/build" SYMROOT="$PWD/build" ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="${DEVELOPER_NAME}" PROVISIONING_PROFILE="6092a63b-9d26-4b31-a677-ea5bd4d812fa"
 after_script:
 - "./scripts/remove-key.sh"
 after_success:
