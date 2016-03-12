@@ -1,17 +1,12 @@
 language: objective-c
 osx_image: xcode7.2
 before_script:
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/CPImageViewer.mobileprovision.enc
-  -d -a -out scripts/profile/CPImageViewer.mobileprovision
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a
-  -out scripts/certs/dist.cer
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
-  -out scripts/certs/dist.p12
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/CPImageViewer.mobileprovision.enc -d -a -out scripts/profile/CPImageViewer.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - "./scripts/add-key.sh"
-- "./scripts/update-bundle.sh"
 script:
-- xcodebuild -project CPImageViewer.xcodeproj -target CPImageViewer -sdk iphoneos
-  -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+- xcodebuild -project CPImageViewer.xcodeproj -target CPImageViewer -sdk iphoneos configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 after_script:
 - "./scripts/remove-key.sh"
 after_success:
