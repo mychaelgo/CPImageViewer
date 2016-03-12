@@ -6,7 +6,7 @@ before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 - "./scripts/add-key.sh"
 script:
-- xctool -project CPImageViewer.xcodeproj -scheme CPImageViewer -sdk iphoneos -configuration Release OBJROOT="$PWD/build" SYMROOT="$PWD/build" ONLY_ACTIVE_ARCH=NO
+- xcodebuild -project CPImageViewer.xcodeproj -target CPImageViewer -sdk iphoneos -configuration Release OBJROOT="$PWD/build" SYMROOT="$PWD/build" ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="${DEVELOPER_NAME}" PROVISIONING_PROFILE="${PROVISIONING_PROFILE}"
 after_script:
 - "./scripts/remove-key.sh"
 after_success:
@@ -16,6 +16,7 @@ env:
   - APP_NAME="CPImageViewer"
   - 'DEVELOPER_NAME="iPhone Distribution: ZTE Software Changsha Co., Ltd"'
   - PROFILE_NAME="CPImageViewer"
+  - PROVISIONING_PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_NAME.mobileprovision"
   - TRAVIS_BRANCH="master"
   - TRAVIS_BUILD_NUMBER="1.0.0"
   - INFO_PLIST="CPImageViewer/Info.plist"
