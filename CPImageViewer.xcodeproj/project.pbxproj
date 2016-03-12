@@ -131,7 +131,6 @@
 				TargetAttributes = {
 					95D3A30E1C71E26F003A750C = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 5M6234DYMA;
 					};
 				};
 			};
