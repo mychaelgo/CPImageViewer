@@ -5,4 +5,3 @@ security import ./scripts/certs/dist.cer -k ~/Library/Keychains/ios-build.keycha
 security import ./scripts/certs/dist.p12 -k ~/Library/Keychains/ios-build.keychain -P $KEY_PASSWORD -T /usr/bin/codesign
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 cp ./scripts/profile/$PROFILE_NAME.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
-cp ./scripts/profile/6092a63b-9d26-4b31-a677-ea5bd4d812fa.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
