@@ -45,6 +45,7 @@ class TableViewController: UITableViewController, ImageControllerProtocol {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
         imageView = cell?.imageView

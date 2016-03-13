@@ -10,13 +10,13 @@ import UIKit
 
 public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInteractiveTransitioning, UIGestureRecognizerDelegate {
     public var isPresented = true
-    weak var controller: UIViewController!
+    weak var imageViewerVC: ImageViewerViewController!
     var distance = UIScreen.mainScreen().bounds.size.height/2
     var interactionInProgress = false
     var shouldCompleteTransition = false
     
+    var startInteractive = false
     var transitionContext: UIViewControllerContextTransitioning?
-    var fromVC: ImageViewerViewController!
     var toVC: UIViewController!
     var newImageView: UIImageView!
     var backgroundView: UIView!
@@ -24,9 +24,9 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
     var fromFrame: CGRect = CGRectZero
     var toFrame: CGRect = CGRectZero
     
-    func wireToViewController(vc: UIViewController) {
+    func wireToViewController(vc: ImageViewerViewController) {
         
-        controller = vc
+        imageViewerVC = vc
         let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
         panGesture.maximumNumberOfTouches = 1
         panGesture.minimumNumberOfTouches = 1
@@ -35,9 +35,9 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
     }
     
     public func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
+        startInteractive = true
         self.transitionContext = transitionContext
         
-        fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! ImageViewerViewController
         toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
         let containerView = transitionContext.containerView()
         
@@ -46,47 +46,38 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         backgroundView.backgroundColor = UIColor.blackColor()
         containerView?.addSubview(backgroundView)
         
-        let fromImageView = fromVC.imageView
+        let fromImageView = imageViewerVC.imageView
         toImageView = (toVC as! ImageControllerProtocol).imageView
         fromFrame = fromImageView.convertRect(fromImageView.bounds, toView: containerView)
         toFrame = toImageView.convertRect(toImageView.bounds, toView: containerView)
-        
+    
         newImageView = UIImageView(frame: fromFrame)
         newImageView.image = fromImageView.image
         newImageView.contentMode = .ScaleAspectFit
         containerView?.addSubview(newImageView)
         
-        fromVC.view.alpha = 0.0
+        imageViewerVC.view.alpha = 0.0
         containerView!.addSubview(toVC.view)
         containerView!.sendSubviewToBack(toVC.view)
     }
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
         
-        let currentPoint = gesture.translationInView(controller.view)
+        let currentPoint = gesture.translationInView(imageViewerVC.view)
         switch (gesture.state) {
         case .Began:
-            
             interactionInProgress = true
             if isPresented {
-                controller.dismissViewControllerAnimated(true, completion: nil)
+                imageViewerVC.dismissViewControllerAnimated(true, completion: nil)
             } else {
-               controller.navigationController?.popViewControllerAnimated(true)
+               imageViewerVC.navigationController?.popViewControllerAnimated(true)
             }
         
         case .Changed:
             
-            let percent = min(fabs(currentPoint.y) / distance, 1)
-            shouldCompleteTransition = (percent > 0.3)
-            transitionContext?.updateInteractiveTransition(percent)
-            backgroundView.alpha = 1 - percent
+            updateInteractiveTransition(currentPoint)
             
-            newImageView.frame.origin.y = fromFrame.origin.y + currentPoint.y
-            newImageView.bounds.size.width = fromFrame.width - percent * 60.0
-            newImageView.frame.origin.x = fromFrame.origin.x + percent * 60.0 / 2.0
-        
         case .Ended, .Cancelled:
-
             interactionInProgress = false
             if (!shouldCompleteTransition || gesture.state == .Cancelled) {
                 cancelTransition()
@@ -99,12 +90,34 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         }
     }
     
+    func updateInteractiveTransition(currentPoint: CGPoint) {
+        guard startInteractive else { return }
+        
+        let percent = min(fabs(currentPoint.y) / distance, 1)
+        
+        shouldCompleteTransition = (percent > 0.3)
+        transitionContext?.updateInteractiveTransition(percent)
+        backgroundView.alpha = 1 - percent
+        
+        newImageView.frame.origin.y = fromFrame.origin.y + currentPoint.y
+        
+        if (fromFrame.width > UIScreen.mainScreen().bounds.size.width - 60)
+        {
+            newImageView.frame.size.width = fromFrame.width - percent * 60.0
+            newImageView.frame.origin.x = fromFrame.origin.x + percent * 30.0
+        }
+    }
+    
     func completeTransition() {
+        guard startInteractive else { return }
+        
         let duration = 0.3
         UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseInOut, animations: {
             self.newImageView.frame = self.toFrame
             self.backgroundView.alpha = 0.0
             }, completion: { finished in
+                self.startInteractive = false
+                
                 self.newImageView.removeFromSuperview()
                 self.backgroundView.removeFromSuperview()
                 
@@ -116,16 +129,19 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
     }
     
     func cancelTransition() {
+        guard startInteractive else { return }
         
         let duration = 0.3
         UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseInOut, animations: {
             self.newImageView.frame = self.fromFrame
             self.backgroundView.alpha = 1.0
             }, completion: { finished in
+                self.startInteractive = false
+                
                 self.newImageView.removeFromSuperview()
                 self.backgroundView.removeFromSuperview()
                 
-                self.fromVC.view.alpha = 1.0
+                self.imageViewerVC.view.alpha = 1.0
                 self.toVC.view.removeFromSuperview()
                 
                 self.transitionContext?.cancelInteractiveTransition()
@@ -135,7 +151,7 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
     
     public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let panGesture = gestureRecognizer as? UIPanGestureRecognizer {
-            let currentPoint = panGesture.translationInView(controller.view)
+            let currentPoint = panGesture.translationInView(imageViewerVC.view)
             return fabs(currentPoint.y) > fabs(currentPoint.x)
         }
         

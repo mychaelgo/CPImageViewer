@@ -15,8 +15,8 @@ class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewContr
 
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if presenting is ImageControllerProtocol && presented is ImageControllerProtocol {
-            interativeAnimator.wireToViewController(presented)
+        if presenting is ImageControllerProtocol && presented is ImageViewerViewController {
+            interativeAnimator.wireToViewController(presented as! ImageViewerViewController)
             interativeAnimator.isPresented = true
             animator.dismiss = false
             return animator
@@ -41,9 +41,9 @@ class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewContr
     
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if fromVC is ImageControllerProtocol && toVC is ImageControllerProtocol {
+        if fromVC is ImageControllerProtocol && toVC is ImageViewerViewController {
             if operation == .Push {
-                interativeAnimator.wireToViewController(toVC)
+                interativeAnimator.wireToViewController(toVC as! ImageViewerViewController)
                 interativeAnimator.isPresented = false
                 animator.dismiss = false
                 return animator
