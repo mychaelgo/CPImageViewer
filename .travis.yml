@@ -1,12 +1,17 @@
 language: objective-c
 osx_image: xcode7.2
 before_script:
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/CPImageViewer.mobileprovision.enc -d -a -out scripts/profile/CPImageViewer.mobileprovision
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/CPImageViewer.mobileprovision.enc
+  -d -a -out scripts/profile/CPImageViewer.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a
+  -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
+  -out scripts/certs/dist.p12
 - "./scripts/add-key.sh"
 script:
-- xcodebuild -project CPImageViewer.xcodeproj -target CPImageViewer -sdk iphoneos -configuration Release OBJROOT="$PWD/build" SYMROOT="$PWD/build" ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="$DEVELOPER_NAME"
+- xcodebuild -project CPImageViewer.xcodeproj -target CPImageViewer -sdk iphoneos
+  -configuration Release OBJROOT="$PWD/build" SYMROOT="$PWD/build" ONLY_ACTIVE_ARCH=NO
+  CODE_SIGN_IDENTITY="$DEVELOPER_NAME"
 after_script:
 - "./scripts/remove-key.sh"
 after_success:
@@ -23,3 +28,5 @@ env:
   - BUNDLE_DISPLAY_NAME="CPImageViewer"
   - secure: dUb6mo0R6/E61c43oyHGDYvvGPBoe7fkXgIsLbSqFh+/v5DF1KWjtdXFn8RdlLjfUZMfwcz8eVYTDYMjg1Sku7b2JNbJg6vWCqhc1et6hwgtFo8vQrli9AlNEel7H74LVX264UGv/B98hBNZxsHE4tw5rjmhye6b4gE300WKDIt7moedPcaBfmBIwqZoT45BSD0YA8v0WotlUd+zNgwSQQcOB/XZFMeT55rRQiOEUsexnoeRiAVuFO5fug2IlaAaHyv4g6kl/hB4xaVWu/Gz1oOUTbL45xhYZBgFANH9fyr23Cml+yRC26dEAUuFsgLu0VQ+NZV0bboUv3O+nCFKENZoWYFfJroTd8fMMR0hDBNy324/U3IjCt7dic3zyj1lKjd6SyI8s8Pd7WP8WqLG71bRATvms8OynkRgpHDisO6ye/s6O/b5f67JCVjdkVhbxHTBZRYNMETCOcL5XBf/xzj4bu+QIr+8MCApaePgf75L2PvShHhzjto/cS+PxMKD+F1SfqjcFOKxDQo31t6M+7Xlmi88jMTR7Ga3k8aeqpd5B2SNhvt6LoakB+u9w2JPEzQbZxXKFfeVzQL6aEH95w5/Fw+G1io9DY2oaLGGHnlb5A8Q/Bx8YLpK6qv9i+do3uM2of0KHap5e2QoHbxKVvUVKy/o61E9idCEh2qNwbk=
   - secure: z6B5h1SDdXsFmzylgThptf77udVLhgT/Q895VTcWsCRrEYVm9h3g2IS5ure/HrpUuCK06KG1GAQI2L/pGyafgaayy10KOVtjUKBP+l2gQMKwGk6GaQmS64Bnlb1Wr8yJ7oPheYsuQc+97WachGXZPAKXlp0eHk07C9RuUfyODo86DOZGrPF99A9/N8qTGVNOfWu0XI0BhvKGFFfNCehhPqGEpeL8WI2mVMqlH71JXuOSM6riEr5dPmpZoCrNytBFjcmxBsfpwmsg1ymP5yTZEuM0TfFZxw9BEYIPH6+/GSgy3DAARlc1b3l31WozSElbaa6Qd9CpKRBB+WmcIvIp/OkrsBhzmh/eDAWfNEJx6N9wD3wbcGER7frZHGhWyCyUonpxgOn/+xgKWAvBd9GKdTboU3Q7A4qsKBLj0NrHJGChsa3M/OTohXSiqDAIk+KtV+3SyMPTwi2mHoojg6ejd+FFiGu/3Uq+x6kUp5KPAUUU+w+5n9KL8Av5qpa1a6tOye7lP/Gs1xv2OeXmLwWg4NHMWrx0ANoi/b0hFVTDGD+CgcXE1NzTRW/WM8FJpKh03n9h/kxm6kDZnjsGQ9vbLmwi7eJ00WVJAjxrB4KrGMIqqq9JSxvlOqn/BaHR/nhS/f7bmnrkVYa3huhegsWBq2lpaWARpBcaklZhF2Ex7Og=
+  - secure: udebJesyABcZ+gVAEf87yyFqZJbt/jdtm/fKEQwhXYm5MVczEY6Ll9yn7T6bGBOqhEPl+uIiUxjeEIyQlVOZLMF8xCSgV8gtXgq2+ZJKQvGgw6oxbxldICLjHaU5ct7W8FICPGofamcR6M0iB7MjP61yNPOCaYxP0kbj/qawW1mjbe70nS5mtZuhYKXbno641a8c/Zb4dLypYPWXoXIcjhdTSPmQwbvGOowKMkwXop7aAV2Z/2yi6Ps3BQ00WozSXToa4TJkXdHi6qZViR+2wWv9kZPOQpII/DIWiO2k2jdkd65ZIaULOHHmbEClidq/+oZ5FI1390mIO+1zKJ8vUmLbMCfRxmZETQpBon6nduVaD8cStY3hU4zYSlcW2IEf5YJEMvFwPEexPHezaNTyYaejnxBKadqNNVDhz9/W3aMlkrOeXaoMoy3q4pDtYzj7aiitqmQQc/eeu2FrK3mzAuni18TYVJv8lDTJNcgcHcZ8jLX7ZqUs5XlnGC2DeZ64RBSFUL8K2utDzZ7v0U0Z3LM1XPB9wSh2jIQ2uDVun9tIGa4fKzK9EEHBmkdvdokssabNQUoOwK+VxcuKVVMUxjbCnpnZAmvNpYHVp/IOwjlHMnY3D99WjjEnoGpCoCgaY/6UAFyg3RVj8SdTC8IoW5nnntKCIHxBAolZR4oo534=
+  - secure: kuQfUtP5nXy4b8rg8kvD+MDcTeX9Zq+mG/fcx8MGuwrDIyi3IqcyjbcRrJKDn+JwwPJ1VsD7IpVH4gbVjutXvFtzngtdlNIw/hbyETmUj99IzYc/xWzUvZkgCcxDtSUgcIzAEHCvmFU4TaJu+bsGIgWGZH+pym6PTWqcw3JCvJpe/7Cr8AN8tXQLV1dZKzcV6gK3TdKmiO9IoghPEvhRM/SiV3Fk5CAf/Q0fkLzcCwYj5q4wbpIxSq5ZbofYGqgN8Xe7OsgJFAUFhVA6jxNAczf8XjRQDzzdjpjWefFo5/sUyZ6DxeIGudLOYhiZtZEKqpZc+puYNt4Dk0KUE8fwXlGzzNDsK1eO5cBS9JftcQbt07aJKcpXwDP57lDdKZdW5RyPxMMig4BgkdDLk+hISkDRkrH43RDC872eUcKjKUQzL6atW2gHGSFFz4OgPivHt5ScowXNMu/L5UYF+fGw0+Eb2ZgDYxr6FyBEZxDrpt4uHKFEBPoIY4fIa7LkvEZRanA9GhieNcYaiUypkcfn2+sAGFDXEvwcLx75nRJKQO3re9Oay/TkZn3/OvF9U+K81LlNuferq1XfyHmQNTg6s56Ihh2N2aQCgfiJ0VQRH0Whv1Obs8l9xDFYQQg+wWyyTygN41e6kid0r782kYcEBHyQjrORXZviP2VmKQ1HWMA=
