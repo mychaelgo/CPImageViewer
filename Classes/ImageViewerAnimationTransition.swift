@@ -8,13 +8,12 @@
 
 import UIKit
 
-@objc public protocol ImageControllerProtocol {
+public protocol ImageControllerProtocol {
     var imageView: UIImageView! { get }
 }
 
 public class ImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
-    //private var originalFrame = CGRectZero
     public var dismiss = false
     
     public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {

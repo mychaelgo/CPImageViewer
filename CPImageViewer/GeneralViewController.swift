@@ -21,12 +21,10 @@ class GeneralViewController: UIViewController, ImageControllerProtocol {
         // Do any additional setup after loading the view.
         
         self.view.backgroundColor = UIColor.whiteColor()
-        
-        imageView.frame = CGRectMake(60, 100, 100, 100)
-        imageView.image = UIImage(named: "1")
-        imageView.contentMode = .ScaleAspectFit
-        self.view.addSubview(imageView)
-        addTapGestureToImageView()
+    
+        let tap = UITapGestureRecognizer(target: self, action: "tap")
+        imageView.addGestureRecognizer(tap)
+        imageView.userInteractionEnabled = true
         
         if let navi = self.navigationController as? CustomNavigationController {
             navi.imageView = imageView
@@ -35,12 +33,6 @@ class GeneralViewController: UIViewController, ImageControllerProtocol {
         if !isPresented {
             self.navigationController?.delegate = imageViewer
         }
-    }
-    
-    func addTapGestureToImageView() {
-        let tap = UITapGestureRecognizer(target: self, action: "tap")
-        imageView.addGestureRecognizer(tap)
-        imageView.userInteractionEnabled = true
     }
 
     func tap() {

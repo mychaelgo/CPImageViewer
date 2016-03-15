@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
+public class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
 
-    let animator = ImageViewerAnimationTransition()
-    let interativeAnimator = ImageViewerInteractiveTransition()
+    private let animator = ImageViewerAnimationTransition()
+    private let interativeAnimator = ImageViewerInteractiveTransition()
 
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if presenting is ImageControllerProtocol && presented is ImageViewerViewController {
             interativeAnimator.wireToViewController(presented as! ImageViewerViewController)
@@ -25,7 +25,7 @@ class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewContr
         return nil
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if dismissed is ImageControllerProtocol {
             animator.dismiss = true
@@ -35,28 +35,26 @@ class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewContr
         return nil
     }
     
-    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    public func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interativeAnimator.interactionInProgress ? interativeAnimator : nil
     }
     
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if fromVC is ImageControllerProtocol && toVC is ImageViewerViewController {
-            if operation == .Push {
-                interativeAnimator.wireToViewController(toVC as! ImageViewerViewController)
-                interativeAnimator.isPresented = false
-                animator.dismiss = false
-                return animator
-            } else if operation == .Pop {
-                animator.dismiss = true
-                return animator
-            }
+        if operation == .Push && fromVC is ImageControllerProtocol && toVC is ImageViewerViewController {
+            interativeAnimator.wireToViewController(toVC as! ImageViewerViewController)
+            interativeAnimator.isPresented = false
+            animator.dismiss = false
+            return animator
+        } else if operation == .Pop  && fromVC is ImageViewerViewController && toVC is ImageControllerProtocol {
+            animator.dismiss = true
+            return animator
         }
         
         return nil
     }
     
-    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    public func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interativeAnimator.interactionInProgress ? interativeAnimator : nil
     }
 }

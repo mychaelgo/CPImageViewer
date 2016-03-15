@@ -9,22 +9,23 @@
 import UIKit
 
 public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInteractiveTransitioning, UIGestureRecognizerDelegate {
-    public var isPresented = true
-    weak var imageViewerVC: ImageViewerViewController!
-    var distance = UIScreen.mainScreen().bounds.size.height/2
-    var interactionInProgress = false
-    var shouldCompleteTransition = false
+    public  var isPresented = true
     
-    var startInteractive = false
-    var transitionContext: UIViewControllerContextTransitioning?
-    var toVC: UIViewController!
-    var newImageView: UIImageView!
-    var backgroundView: UIView!
-    var toImageView: UIImageView!
-    var fromFrame: CGRect = CGRectZero
-    var toFrame: CGRect = CGRectZero
+    private weak var imageViewerVC: ImageViewerViewController!
+    private var distance = UIScreen.mainScreen().bounds.size.height/2
+    public  var interactionInProgress = false
+    private var shouldCompleteTransition = false
     
-    func wireToViewController(vc: ImageViewerViewController) {
+    private var startInteractive = false
+    private var transitionContext: UIViewControllerContextTransitioning?
+    private var toVC: UIViewController!
+    private var newImageView: UIImageView!
+    private var backgroundView: UIView!
+    private var toImageView: UIImageView!
+    private var fromFrame: CGRect = CGRectZero
+    private var toFrame: CGRect = CGRectZero
+    
+    public func wireToViewController(vc: ImageViewerViewController) {
         
         imageViewerVC = vc
         let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
@@ -61,7 +62,7 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         containerView!.sendSubviewToBack(toVC.view)
     }
     
-    @objc func handlePan(gesture: UIPanGestureRecognizer) {
+    @objc private func handlePan(gesture: UIPanGestureRecognizer) {
         
         let currentPoint = gesture.translationInView(imageViewerVC.view)
         switch (gesture.state) {
@@ -90,7 +91,7 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         }
     }
     
-    func updateInteractiveTransition(currentPoint: CGPoint) {
+    private func updateInteractiveTransition(currentPoint: CGPoint) {
         guard startInteractive else { return }
         
         let percent = min(fabs(currentPoint.y) / distance, 1)
@@ -108,7 +109,7 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         }
     }
     
-    func completeTransition() {
+    private func completeTransition() {
         guard startInteractive else { return }
         
         let duration = 0.3
@@ -128,7 +129,7 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         })
     }
     
-    func cancelTransition() {
+    private func cancelTransition() {
         guard startInteractive else { return }
         
         let duration = 0.3

@@ -8,22 +8,19 @@
 
 import UIKit
 
-class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate, ImageControllerProtocol {
-    var imageView = UIImageView()
-    var image: UIImage?
-    var rightBarItemTitle: String?
-    var rightBarItemImage: UIImage?
-    var rightAction: ((Void) -> (Void))?
-    var isPresented = true
-    var imageFrame: CGRect = CGRectZero
-
+public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate, ImageControllerProtocol {
+    public var imageView: UIImageView!
+    public var image: UIImage?
+    public var rightBarItemTitle: String?
+    public var rightBarItemImage: UIImage?
+    public var rightAction: ((Void) -> (Void))?
+    public var isPresented = true
     private var scrollView: UIScrollView!
-    
     private var naviBarHeight: CGFloat {
         return isPresented ? 0 : 64
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.blackColor()
@@ -41,10 +38,9 @@ class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestu
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-offsetY-[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: ["offsetY" : naviBarHeight], views: ["scrollView" : scrollView]))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["scrollView" : scrollView]))
         
+        imageView = UIImageView()
         imageView.image = image
         scrollView.addSubview(imageView)
-        
-        //addPanGesture()
         
         if isPresented {
             let tap = UITapGestureRecognizer(target: self, action: "dismiss")
@@ -58,12 +54,12 @@ class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestu
         }
     }
     
-    override func viewDidLayoutSubviews() {
+    public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.imageView.frame = centerFrameForImageView()
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    public override func prefersStatusBarHidden() -> Bool {
         if isPresented {
             return true
         }
@@ -72,7 +68,7 @@ class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestu
     }
     
     //MARK: - Custom Methods
-    func centerFrameForImageView() -> CGRect {
+    private func centerFrameForImageView() -> CGRect {
         guard let aImage = image else { return CGRectZero }
         
         let viewWidth = self.scrollView.frame.size.width
@@ -85,7 +81,7 @@ class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestu
         return CGRectMake((viewWidth - newWidth)/2, (viewHeight - newHeight)/2, newWidth, newHeight)
     }
     
-    func centerScrollViewContents() {
+    private func centerScrollViewContents() {
         let viewWidth = self.scrollView.frame.size.width
         let viewHeight = self.scrollView.frame.size.height
         let imageWidth = imageView.frame.size.width
@@ -97,78 +93,23 @@ class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestu
     }
 
     //MARK: - Button Action
-    func rightBarItemAction() {
+    @objc private func rightBarItemAction() {
         self.navigationController!.popViewControllerAnimated(true)
         if let block = rightAction {
             block()
         }
     }
     
-    func dismiss() {
+    @objc private func dismiss() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    /*
-    MARK: - UIPanGestureRecognizer
-    func addPanGesture() {
-        let panGestrue = UIPanGestureRecognizer(target: self, action: "gestureRecognizerDidPan:")
-        panGestrue.delegate = self
-        imageView.addGestureRecognizer(panGestrue)
-        imageView.userInteractionEnabled = true
-    }
-    
-    func gestureRecognizerDidPan(panGesture: UIPanGestureRecognizer) {
-        let currentPoint = panGesture.translationInView(imageView)
-        
-        switch panGesture.state {
-        case .Began:
-            imageFrame = imageView.frame
-            
-        case .Changed:
-            imageView.frame.origin.y = imageFrame.origin.y + currentPoint.y
-            let percent = min(fabs(currentPoint.y) / (self.view.bounds.size.height / 2), 1)
-            scrollView.backgroundColor = UIColor(white: 0.0, alpha: 1 - percent)
-            imageView.bounds.size.width = imageFrame.width - percent * 60.0
-            imageView.frame.origin.x = imageFrame.origin.x + percent * 60.0 / 2.0
-            
-        case .Ended:
-            if fabs(currentPoint.y) > 50.0 {
-                self.dismiss()
-            } else {
-                resetImageViewFrame()
-            }
-            
-        case .Cancelled:
-            resetImageViewFrame()
-        default:
-            break
-        }
-    }
-    
-    func resetImageViewFrame() {
-        scrollView.backgroundColor = UIColor.blackColor()
-        UIView.animateWithDuration(0.25) {
-            self.imageView.frame = self.imageFrame
-        }
-    }
-    
-    //MARK: - UIGestureRecognizerDelegate
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let panGesture = gestureRecognizer as? UIPanGestureRecognizer {
-            let currentPoint = panGesture.translationInView(imageView)
-            return fabs(currentPoint.y) > fabs(currentPoint.x)
-        }
-        
-        return false
-    }
-    */
-    
     //MARK:- UIScrollViewDelegate
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    public func scrollViewDidZoom(scrollView: UIScrollView) {
         centerScrollViewContents()
     }
 }
