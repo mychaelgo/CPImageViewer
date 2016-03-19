@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 class TableViewController: UITableViewController, ImageControllerProtocol {
 
     var isPresented = false
-    var imageView: UIImageView!
+    var animationImageView: UIImageView!
     var imageViewer = ImageViewerAnimator()
     
     override func viewDidLoad() {
@@ -25,7 +25,6 @@ class TableViewController: UITableViewController, ImageControllerProtocol {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -38,8 +37,10 @@ class TableViewController: UITableViewController, ImageControllerProtocol {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
 
         let name = "\(indexPath.row + 1)"
-        cell.imageView?.image = UIImage(named: name)
-        cell.textLabel?.text = name
+        let imageView = cell.contentView.viewWithTag(100) as! UIImageView
+        let label = cell.contentView.viewWithTag(101) as! UILabel
+        imageView.image = UIImage(named: name)
+        label.text = name
 
         return cell
     }
@@ -47,11 +48,9 @@ class TableViewController: UITableViewController, ImageControllerProtocol {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let cell = tableView.cellForRowAtIndexPath(indexPath)
+        let imageView = cell!.contentView.viewWithTag(100) as! UIImageView
         
-        imageView = cell?.imageView
-        if let navi = self.navigationController as? CustomNavigationController {
-            navi.imageView = cell?.imageView
-        }
+        animationImageView = imageView
 
         tap()
     }
@@ -59,11 +58,12 @@ class TableViewController: UITableViewController, ImageControllerProtocol {
     func tap() {
         let controller = ImageViewerViewController()
         controller.transitioningDelegate = imageViewer
-        controller.image = imageView.image
+        controller.image = animationImageView.image
         
         if !isPresented {
             controller.isPresented = false
             controller.title = "查看图片"
+            
             self.navigationController?.pushViewController(controller, animated: true)
         } else {
             self.presentViewController(controller, animated: true, completion: nil)

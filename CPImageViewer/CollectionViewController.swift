@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 class CollectionViewController: UICollectionViewController, ImageControllerProtocol {
 
     var isPresented = false
-    var imageView: UIImageView!
+    var animationImageView: UIImageView!
     var imageViewer = ImageViewerAnimator()
     
     override func viewDidLoad() {
@@ -49,10 +49,7 @@ class CollectionViewController: UICollectionViewController, ImageControllerProto
         
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
         
-        imageView = cell.imageView
-        if let navi = self.navigationController as? CustomNavigationController {
-            navi.imageView = cell.imageView
-        }
+        animationImageView = cell.imageView
         
         tap()
     }
@@ -60,7 +57,7 @@ class CollectionViewController: UICollectionViewController, ImageControllerProto
     func tap() {
         let controller = ImageViewerViewController()
         controller.transitioningDelegate = imageViewer
-        controller.image = imageView.image
+        controller.image = animationImageView.image
         
         if !isPresented {
             controller.isPresented = false

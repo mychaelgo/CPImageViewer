@@ -12,23 +12,17 @@ class GeneralViewController: UIViewController, ImageControllerProtocol {
     
     var isPresented = false
     
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var animationImageView: UIImageView!
     var imageViewer = ImageViewerAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.greenColor()
     
         let tap = UITapGestureRecognizer(target: self, action: "tap")
-        imageView.addGestureRecognizer(tap)
-        imageView.userInteractionEnabled = true
-        
-        if let navi = self.navigationController as? CustomNavigationController {
-            navi.imageView = imageView
-        }
+        animationImageView.addGestureRecognizer(tap)
+        animationImageView.userInteractionEnabled = true
         
         if !isPresented {
             self.navigationController?.delegate = imageViewer
@@ -38,7 +32,7 @@ class GeneralViewController: UIViewController, ImageControllerProtocol {
     func tap() {
         let controller = ImageViewerViewController()
         controller.transitioningDelegate = imageViewer
-        controller.image = imageView.image
+        controller.image = animationImageView.image
         
         if !isPresented {
             controller.isPresented = false

@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		351ECFAC1C9AD7010023E2CE /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351ECFAB1C9AD7010023E2CE /* UINavigationController.swift */; };
 		3553DFA51C8EFE4000BCB077 /* ImageViewerAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA11C8EFE4000BCB077 /* ImageViewerAnimationTransition.swift */; };
 		3553DFA61C8EFE4000BCB077 /* ImageViewerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA21C8EFE4000BCB077 /* ImageViewerAnimator.swift */; };
 		3553DFA71C8EFE4000BCB077 /* ImageViewerInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA31C8EFE4000BCB077 /* ImageViewerInteractiveTransition.swift */; };
 		3553DFA81C8EFE4000BCB077 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA41C8EFE4000BCB077 /* ImageViewerViewController.swift */; };
 		35DEA4151C8BAC3000869EDC /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DEA4141C8BAC3000869EDC /* CollectionViewCell.swift */; };
-		9501F8F41C814360004A8814 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9501F8F31C814360004A8814 /* CustomNavigationController.swift */; };
 		9501F8F61C81467C004A8814 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9501F8F51C81467C004A8814 /* CollectionViewController.swift */; };
 		95C55F781C81304900BD0E89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C55F761C81304900BD0E89 /* ViewController.swift */; };
 		95C55F791C81304900BD0E89 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C55F771C81304900BD0E89 /* GeneralViewController.swift */; };
@@ -24,12 +24,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		351ECFAB1C9AD7010023E2CE /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		3553DFA11C8EFE4000BCB077 /* ImageViewerAnimationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerAnimationTransition.swift; sourceTree = "<group>"; };
 		3553DFA21C8EFE4000BCB077 /* ImageViewerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerAnimator.swift; sourceTree = "<group>"; };
 		3553DFA31C8EFE4000BCB077 /* ImageViewerInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerInteractiveTransition.swift; sourceTree = "<group>"; };
 		3553DFA41C8EFE4000BCB077 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		35DEA4141C8BAC3000869EDC /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		9501F8F31C814360004A8814 /* CustomNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		9501F8F51C81467C004A8814 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		95C55F761C81304900BD0E89 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		95C55F771C81304900BD0E89 /* GeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +60,7 @@
 				3553DFA21C8EFE4000BCB077 /* ImageViewerAnimator.swift */,
 				3553DFA11C8EFE4000BCB077 /* ImageViewerAnimationTransition.swift */,
 				3553DFA31C8EFE4000BCB077 /* ImageViewerInteractiveTransition.swift */,
+				351ECFAB1C9AD7010023E2CE /* UINavigationController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -86,7 +87,6 @@
 			children = (
 				95D3A3121C71E26F003A750C /* AppDelegate.swift */,
 				95C55F761C81304900BD0E89 /* ViewController.swift */,
-				9501F8F31C814360004A8814 /* CustomNavigationController.swift */,
 				95C55F771C81304900BD0E89 /* GeneralViewController.swift */,
 				95C55F7E1C81313A00BD0E89 /* TableViewController.swift */,
 				9501F8F51C81467C004A8814 /* CollectionViewController.swift */,
@@ -191,10 +191,10 @@
 				9501F8F61C81467C004A8814 /* CollectionViewController.swift in Sources */,
 				95C55F7F1C81313A00BD0E89 /* TableViewController.swift in Sources */,
 				3553DFA71C8EFE4000BCB077 /* ImageViewerInteractiveTransition.swift in Sources */,
+				351ECFAC1C9AD7010023E2CE /* UINavigationController.swift in Sources */,
 				3553DFA81C8EFE4000BCB077 /* ImageViewerViewController.swift in Sources */,
 				95C55F781C81304900BD0E89 /* ViewController.swift in Sources */,
 				95C55F791C81304900BD0E89 /* GeneralViewController.swift in Sources */,
-				9501F8F41C814360004A8814 /* CustomNavigationController.swift in Sources */,
 				95D3A3131C71E26F003A750C /* AppDelegate.swift in Sources */,
 				35DEA4151C8BAC3000869EDC /* CollectionViewCell.swift in Sources */,
 				3553DFA51C8EFE4000BCB077 /* ImageViewerAnimationTransition.swift in Sources */,
@@ -243,7 +243,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 102;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -289,7 +289,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 102;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -316,6 +316,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
+				CURRENT_PROJECT_VERSION = 102;
 				INFOPLIST_FILE = CPImageViewer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -332,6 +333,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
+				CURRENT_PROJECT_VERSION = 102;
 				INFOPLIST_FILE = CPImageViewer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

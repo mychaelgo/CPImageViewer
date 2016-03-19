@@ -25,13 +25,13 @@ The simplest way to install this library is to copy `Classes/*.swift` to your pr
 You can also install this library using CocoaPods. Just add this line to your Podfile:
 
 ``` ruby
-pod 'CPAlertViewController'
+pod 'CPImageViewer'
 ```
 
 Then import library module like so:
 
 ``` swift
-import CPAlertViewController
+import CPImageViewer
 ```
 
 
@@ -108,7 +108,6 @@ public func showInfo(title title: String?, message: String?, buttonTitle: String
 
 * Swift 2.0 +
 * iOS 8+
-
 
 
 

@@ -24,6 +24,7 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
     private var toImageView: UIImageView!
     private var fromFrame: CGRect = CGRectZero
     private var toFrame: CGRect = CGRectZero
+    private var style = UIModalPresentationStyle.FullScreen
     
     public func wireToViewController(vc: ImageViewerViewController) {
         
@@ -38,28 +39,41 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
     public func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
         startInteractive = true
         self.transitionContext = transitionContext
+        style = transitionContext.presentationStyle()
         
         toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
-        let containerView = transitionContext.containerView()
+        let containerView = transitionContext.containerView()!
         
         let finalFrame = transitionContext.finalFrameForViewController(toVC)
+        
+        if style != .OverFullScreen {
+            containerView.addSubview(toVC.view)
+            containerView.sendSubviewToBack(toVC.view)
+            
+            if toVC.view.bounds.size != finalFrame.size {
+                toVC.view.frame = finalFrame
+                toVC.view.setNeedsLayout()
+                toVC.view.layoutIfNeeded()
+            }
+        }
+        
         backgroundView = UIView(frame: finalFrame)
         backgroundView.backgroundColor = UIColor.blackColor()
-        containerView?.addSubview(backgroundView)
+        containerView.addSubview(backgroundView)
         
-        let fromImageView = imageViewerVC.imageView
-        toImageView = (toVC as! ImageControllerProtocol).imageView
+        let fromImageView = imageViewerVC.animationImageView
+        toImageView = (toVC as! ImageControllerProtocol).animationImageView
         fromFrame = fromImageView.convertRect(fromImageView.bounds, toView: containerView)
         toFrame = toImageView.convertRect(toImageView.bounds, toView: containerView)
+        
+        print(toImageView.frame, toFrame)
     
         newImageView = UIImageView(frame: fromFrame)
         newImageView.image = fromImageView.image
         newImageView.contentMode = .ScaleAspectFit
-        containerView?.addSubview(newImageView)
+        containerView.addSubview(newImageView)
         
         imageViewerVC.view.alpha = 0.0
-        containerView!.addSubview(toVC.view)
-        containerView!.sendSubviewToBack(toVC.view)
     }
     
     @objc private func handlePan(gesture: UIPanGestureRecognizer) {
@@ -99,7 +113,6 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         shouldCompleteTransition = (percent > 0.3)
         transitionContext?.updateInteractiveTransition(percent)
         backgroundView.alpha = 1 - percent
-        
         newImageView.frame.origin.y = fromFrame.origin.y + currentPoint.y
         
         if (fromFrame.width > UIScreen.mainScreen().bounds.size.width - 60)
@@ -143,7 +156,9 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
                 self.backgroundView.removeFromSuperview()
                 
                 self.imageViewerVC.view.alpha = 1.0
-                self.toVC.view.removeFromSuperview()
+                if self.style != .OverFullScreen {
+                    self.toVC.view.removeFromSuperview()
+                }
                 
                 self.transitionContext?.cancelInteractiveTransition()
                 self.transitionContext?.completeTransition(false)

@@ -15,10 +15,16 @@ public class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIVi
 
     public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if presenting is ImageControllerProtocol && presented is ImageViewerViewController {
+        if source is ImageControllerProtocol && presenting is ImageControllerProtocol && presented is ImageViewerViewController {
+            if let navi = presenting as? UINavigationController {
+                navi.animationImageView = (source as! ImageControllerProtocol).animationImageView
+            } else if let tabBarVC = presenting as? UITabBarController {
+                tabBarVC.animationImageView = (source as! ImageControllerProtocol).animationImageView
+            }
+            
             interativeAnimator.wireToViewController(presented as! ImageViewerViewController)
             interativeAnimator.isPresented = true
-            animator.dismiss = false
+            animator.isBack = false
             return animator
         }
         
@@ -27,8 +33,8 @@ public class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIVi
     
     public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if dismissed is ImageControllerProtocol {
-            animator.dismiss = true
+        if dismissed is ImageViewerViewController {
+            animator.isBack = true
             return animator
         }
         
@@ -44,10 +50,10 @@ public class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIVi
         if operation == .Push && fromVC is ImageControllerProtocol && toVC is ImageViewerViewController {
             interativeAnimator.wireToViewController(toVC as! ImageViewerViewController)
             interativeAnimator.isPresented = false
-            animator.dismiss = false
+            animator.isBack = false
             return animator
         } else if operation == .Pop  && fromVC is ImageViewerViewController && toVC is ImageControllerProtocol {
-            animator.dismiss = true
+            animator.isBack = true
             return animator
         }
         
