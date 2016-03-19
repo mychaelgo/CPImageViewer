@@ -10,8 +10,7 @@ before_script:
 - "./scripts/add-key.sh"
 script:
 - xcodebuild -project CPImageViewer.xcodeproj -target CPImageViewer -sdk iphoneos
-  -configuration Release OBJROOT="$PWD/build" SYMROOT="$PWD/build" ONLY_ACTIVE_ARCH=NO
-  CODE_SIGN_IDENTITY="$DEVELOPER_NAME"
+  -configuration Release OBJROOT="$PWD/build" SYMROOT="$PWD/build" ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="$DEVELOPER_NAME" 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
 after_script:
 - "./scripts/remove-key.sh"
 after_success:
