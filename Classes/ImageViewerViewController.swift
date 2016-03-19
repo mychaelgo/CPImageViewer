@@ -8,13 +8,29 @@
 
 import UIKit
 
+public enum CPImageViewerStyle {
+    case Presentation
+    case Push
+}
+
 public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate, ImageControllerProtocol {
     public var animationImageView: UIImageView!
+    
+    /// The viewer style. Defaults to Presentation
+    public var viewerStyle = CPImageViewerStyle.Presentation
+    
+    /// The image of animation image view
     public var image: UIImage?
+    
+    /// The title of *navigationItem.rightBarButtonItem* when viewerStyle is Push
     public var rightBarItemTitle: String?
+    
+    /// The image of *navigationItem.rightBarButtonItem* when viewerStyle is Push
     public var rightBarItemImage: UIImage?
+    
+    /// The action of *navigationItem.rightBarButtonItem* when viewerStyle is Push
     public var rightAction: ((Void) -> (Void))?
-    public var isPresented = true
+    
     private var scrollView: UIScrollView!
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -33,10 +49,6 @@ public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, 
         
         self.view.backgroundColor = UIColor.blackColor()
         
-        if isPresented {
-            self.edgesForExtendedLayout = .None
-        }
-        
         scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.blackColor()
         scrollView.maximumZoomScale = 5.0
@@ -53,7 +65,7 @@ public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, 
         animationImageView.image = image
         scrollView.addSubview(animationImageView)
         
-        if isPresented {
+        if viewerStyle == .Presentation {
             let tap = UITapGestureRecognizer(target: self, action: "dismiss")
             scrollView.addGestureRecognizer(tap)
         } else if let title = rightBarItemTitle {
@@ -73,7 +85,7 @@ public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, 
     }
     
     public override func prefersStatusBarHidden() -> Bool {
-        if isPresented {
+        if viewerStyle == .Presentation {
             return true
         }
         

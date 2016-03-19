@@ -65,8 +65,6 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         toImageView = (toVC as! ImageControllerProtocol).animationImageView
         fromFrame = fromImageView.convertRect(fromImageView.bounds, toView: containerView)
         toFrame = toImageView.convertRect(toImageView.bounds, toView: containerView)
-        
-        print(toImageView.frame, toFrame)
     
         newImageView = UIImageView(frame: fromFrame)
         newImageView.image = fromImageView.image

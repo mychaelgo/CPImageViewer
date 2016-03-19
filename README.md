@@ -1,16 +1,16 @@
 # CPImageViewer
 
-Viewing a single image using transition animation
+Viewing a single image using transition animation. Supporting presentation and push &  pop.
 
 ## Screenshot
 
-#####Present
+#####Present & Dismiss
 
 ![](Screenshot1.gif)
 
 
 
-#####Navigation
+#####Push & Pop
 
 ![](Screenshot2.gif)
 
@@ -41,65 +41,53 @@ import CPImageViewer
 These properties is global and applied to the whole project.
 
 ``` swift
-/// The font size of tittle
-public static var titleFontSize: CGFloat = 22.0
-
-/// The font size of message
-public static var messageFontSize: CGFloat = 16.0
-
-/// The font size of button
-public static var buttonFontSize: CGFloat = 16.0
-
-/// The text color of tittle
-public static var titleColor = UIColor.colorFromRGB(0x333333)
-
-/// The text color of message
-public static var messageColor = UIColor.colorFromRGB(0x555555)
-
-/// The text color of button
-public static var buttonTitleColor = UIColor.whiteColor()
-
-/// The normal background color of button
-public static var buttonBGNormalColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0)
-
-/// The highlighted background color of button
-public static var buttonBGHighlightedColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 0.7)
+/// The viewer style. Defaults to Presentation
+public var viewerStyle = CPImageViewerStyle.Presentation
+    
+/// The image of animation image view
+public var image: UIImage?
+    
+/// The title of *navigationItem.rightBarButtonItem* when viewerStyle is Push
+public var rightBarItemTitle: String?
+    
+/// The image of *navigationItem.rightBarButtonItem* when viewerStyle is Push
+public var rightBarItemImage: UIImage?
+    
+/// The action of *navigationItem.rightBarButtonItem* when viewerStyle is Push
+public var rightAction: ((Void) -> (Void))?
 ```
 
 
 
 ## Usage
 
-The designated method
-
+Conforming to  *ImageControllerProtocol* protocol
 ``` swift
-public func show(title title: String?, message: String?, style: CPAlertStyle = .None, buttonTitle: String = "OK", otherButtonTitle: String? = nil, action: UserAction? = nil)
+class ViewController: UIViewController, ImageControllerProtocol {
+  var animationImageView: UIImageView!
+  var imageViewer = ImageViewerAnimator()
+}
 ```
 
-CPAlertViewController also provides four convenience methods
-
-Show success
+Presentation
 
 ``` swift
-public func showSuccess(title title: String?, message: String?, buttonTitle: String = "OK", otherButtonTitle: String? = nil, action: UserAction? = nil) 
+let controller = ImageViewerViewController()
+controller.transitioningDelegate = imageViewer
+controller.image = animationImageView.image 
+self.presentViewController(controller, animated: true, completion: nil)
 ```
 
-Show error
+or Push
 
 ``` swift
-public func showError(title title: String?, message: String?, buttonTitle: String = "OK", otherButtonTitle: String? = nil, action: UserAction? = nil)
-```
+override func viewDidLoad() {
+    self.navigationController?.delegate = imageViewer
+}
 
-Show warning
-
-``` swift
-public func showWarning(title title: String?, message: String?, buttonTitle: String = "OK", otherButtonTitle: String? = nil, action: UserAction? = nil)
-```
-
-Show info
-
-```swift
-public func showInfo(title title: String?, message: String?, buttonTitle: String = "OK", otherButtonTitle: String? = nil, action: UserAction? = nil)
+controller.isPresented = false
+controller.title = "CPImageViewer"
+self.navigationController?.pushViewController(controller, animated: true)
 ```
 
 
@@ -108,18 +96,6 @@ public func showInfo(title title: String?, message: String?, buttonTitle: String
 
 * Swift 2.0 +
 * iOS 8+
-
-
-
-##To Do List
-
-- [x] [CocoaPods](Document/CocoaPods/)
-
-- [ ] Carthage
-- [ ] Swift Package Manager
-
-
-
 
 
 

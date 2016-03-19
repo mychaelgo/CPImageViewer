@@ -55,12 +55,6 @@ public class ImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedT
         containerView.addSubview(newImageView)
         
         if !isBack {
-            print(fromImageView.frame, fromFrame)
-        } else {
-            print(toImageView.frame, toFrame)
-        }
-        
-        if !isBack {
             backgroundView.alpha = 0.0
             fromImageView.alpha = 0.0
         } else {

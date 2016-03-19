@@ -61,8 +61,8 @@ class TableViewController: UITableViewController, ImageControllerProtocol {
         controller.image = animationImageView.image
         
         if !isPresented {
-            controller.isPresented = false
-            controller.title = "查看图片"
+            controller.viewerStyle = .Push
+            controller.title = "CPImageViewer"
             
             self.navigationController?.pushViewController(controller, animated: true)
         } else {
