@@ -85,7 +85,7 @@ override func viewDidLoad() {
     self.navigationController?.delegate = imageViewer
 }
 
-controller.isPresented = false
+controller.viewerStyle = .Push
 controller.title = "CPImageViewer"
 self.navigationController?.pushViewController(controller, animated: true)
 ```
