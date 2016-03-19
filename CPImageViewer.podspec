@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "CPImageViewer"
-  s.version          = "1.2.0"
+  s.version          = "1.2.1"
   s.summary          = "Viewing a single image using transition animation."
   s.homepage         = "https://github.com/cp3hnu/CPImageViewer.git"
   s.license          = 'MIT'
