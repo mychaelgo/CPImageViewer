@@ -26,16 +26,18 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
     private var toFrame: CGRect = CGRectZero
     private var style = UIModalPresentationStyle.FullScreen
     
+    //MARK: - Install pan gesture recognizer
     public func wireToViewController(vc: ImageViewerViewController) {
         
         imageViewerVC = vc
-        let panGesture = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(ImageViewerInteractiveTransition.handlePan(_:)))
         panGesture.maximumNumberOfTouches = 1
         panGesture.minimumNumberOfTouches = 1
         panGesture.delegate = self
         vc.view.addGestureRecognizer(panGesture)
     }
     
+    //MARK: - UIViewControllerInteractiveTransitioning
     public func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
         startInteractive = true
         self.transitionContext = transitionContext
@@ -43,9 +45,11 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         
         toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
         let containerView = transitionContext.containerView()!
-        
         let finalFrame = transitionContext.finalFrameForViewController(toVC)
         
+        // Solving the error of location of image view after rotating device and returning to previous controller. See ImageViewerViewController.init()
+        // The OverFullScreen style don't need add toVC.view
+        // The style is None when ImageViewerViewController.viewerStyle is CPImageViewerStyle.Push
         if style != .OverFullScreen {
             containerView.addSubview(toVC.view)
             containerView.sendSubviewToBack(toVC.view)
@@ -74,6 +78,7 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         imageViewerVC.view.alpha = 0.0
     }
     
+    //MARK: - UIPanGestureRecognizer
     @objc private func handlePan(gesture: UIPanGestureRecognizer) {
         
         let currentPoint = gesture.translationInView(imageViewerVC.view)
@@ -103,6 +108,16 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         }
     }
     
+    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let panGesture = gestureRecognizer as? UIPanGestureRecognizer {
+            let currentPoint = panGesture.translationInView(imageViewerVC.view)
+            return fabs(currentPoint.y) > fabs(currentPoint.x)
+        }
+        
+        return true
+    }
+    
+    //MARK: - Update & Complete & Cancel
     private func updateInteractiveTransition(currentPoint: CGPoint) {
         guard startInteractive else { return }
         
@@ -161,14 +176,5 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
                 self.transitionContext?.cancelInteractiveTransition()
                 self.transitionContext?.completeTransition(false)
         })
-    }
-    
-    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let panGesture = gestureRecognizer as? UIPanGestureRecognizer {
-            let currentPoint = panGesture.translationInView(imageViewerVC.view)
-            return fabs(currentPoint.y) > fabs(currentPoint.x)
-        }
-        
-        return true
     }
 }

@@ -18,9 +18,9 @@ class GeneralViewController: UIViewController, ImageControllerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.greenColor()
+        //self.view.backgroundColor = UIColor.greenColor()
     
-        let tap = UITapGestureRecognizer(target: self, action: "tap")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(GeneralViewController.tap))
         animationImageView.addGestureRecognizer(tap)
         animationImageView.userInteractionEnabled = true
         

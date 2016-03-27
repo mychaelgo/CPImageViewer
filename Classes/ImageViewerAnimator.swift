@@ -13,6 +13,7 @@ public class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIVi
     private let animator = ImageViewerAnimationTransition()
     private let interativeAnimator = ImageViewerInteractiveTransition()
 
+    //MARK: - UIViewControllerTransitioningDelegate
     public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if source is ImageControllerProtocol && presenting is ImageControllerProtocol && presented is ImageViewerViewController {
@@ -45,6 +46,7 @@ public class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIVi
         return interativeAnimator.interactionInProgress ? interativeAnimator : nil
     }
     
+    //MARK: - UINavigationDelegate
     public func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if operation == .Push && fromVC is ImageControllerProtocol && toVC is ImageViewerViewController {

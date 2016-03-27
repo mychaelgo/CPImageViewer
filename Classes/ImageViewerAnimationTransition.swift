@@ -28,8 +28,10 @@ public class ImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedT
         let style = transitionContext.presentationStyle()
         let finalFrame = transitionContext.finalFrameForViewController(toVC)
         
+        // Solving the error of location of image view after rotating device and returning to previous controller. See ImageViewerViewController.init()
+        // The OverFullScreen style don't need add toVC.view
+        // The style is None when ImageViewerViewController.viewerStyle is CPImageViewerStyle.Push
         if style != .OverFullScreen && isBack {
-            
             containerView.addSubview(toVC.view)
             containerView.sendSubviewToBack(toVC.view)
             

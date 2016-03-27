@@ -43,16 +43,16 @@ These properties is global and applied to the whole project.
 ``` swift
 /// The viewer style. Defaults to Presentation
 public var viewerStyle = CPImageViewerStyle.Presentation
-    
+
 /// The image of animation image view
 public var image: UIImage?
-    
+
 /// The title of *navigationItem.rightBarButtonItem* when viewerStyle is Push
 public var rightBarItemTitle: String?
-    
+
 /// The image of *navigationItem.rightBarButtonItem* when viewerStyle is Push
 public var rightBarItemImage: UIImage?
-    
+
 /// The action of *navigationItem.rightBarButtonItem* when viewerStyle is Push
 public var rightAction: ((Void) -> (Void))?
 ```
@@ -94,9 +94,9 @@ self.navigationController?.pushViewController(controller, animated: true)
 
 ## Requirements
 
-* Swift 2.0 +
+* Swift 2.2
+* Xcode 7.3
 * iOS 8+
-
 
 
 ## License

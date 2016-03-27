@@ -36,7 +36,7 @@ public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, 
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        //解决屏幕旋转后，返回时image view位置错误的问题
+        //Solving the error of location of image view after rotating device and returning to previous controller.
         self.modalPresentationStyle = .OverFullScreen
     }
 
@@ -66,13 +66,13 @@ public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, 
         scrollView.addSubview(animationImageView)
         
         if viewerStyle == .Presentation {
-            let tap = UITapGestureRecognizer(target: self, action: "dismiss")
+            let tap = UITapGestureRecognizer(target: self, action: #selector(ImageViewerViewController.dismiss))
             scrollView.addGestureRecognizer(tap)
         } else if let title = rightBarItemTitle {
-            let rightItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: "rightBarItemAction")
+            let rightItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: #selector(ImageViewerViewController.rightBarItemAction))
             self.navigationItem.rightBarButtonItem = rightItem
         } else if let image = rightBarItemImage {
-            let rightItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: "rightBarItemAction")
+            let rightItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: #selector(ImageViewerViewController.rightBarItemAction))
             self.navigationItem.rightBarButtonItem = rightItem
         }
     }
