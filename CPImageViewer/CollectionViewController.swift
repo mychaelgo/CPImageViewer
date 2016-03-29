@@ -10,17 +10,17 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class CollectionViewController: UICollectionViewController, ImageControllerProtocol {
+class CollectionViewController: UICollectionViewController, CPImageControllerProtocol {
 
     var isPresented = false
     var animationImageView: UIImageView!
-    var imageViewer = ImageViewerAnimator()
+    var animator = CPImageViewerAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if !isPresented {
-            self.navigationController?.delegate = imageViewer
+            self.navigationController?.delegate = animator
         }
     }
 
@@ -55,8 +55,8 @@ class CollectionViewController: UICollectionViewController, ImageControllerProto
     }
     
     func tap() {
-        let controller = ImageViewerViewController()
-        controller.transitioningDelegate = imageViewer
+        let controller = CPImageViewerViewController()
+        controller.transitioningDelegate = animator
         controller.image = animationImageView.image
         
         if !isPresented {

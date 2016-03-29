@@ -8,10 +8,10 @@
 
 import UIKit
 
-public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInteractiveTransitioning, UIGestureRecognizerDelegate {
+public class CPImageViewerInteractiveTransition: NSObject, UIViewControllerInteractiveTransitioning, UIGestureRecognizerDelegate {
     public  var isPresented = true
     
-    private weak var imageViewerVC: ImageViewerViewController!
+    private weak var imageViewerVC: CPImageViewerViewController!
     private var distance = UIScreen.mainScreen().bounds.size.height/2
     public  var interactionInProgress = false
     private var shouldCompleteTransition = false
@@ -27,10 +27,10 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
     private var style = UIModalPresentationStyle.FullScreen
     
     //MARK: - Install pan gesture recognizer
-    public func wireToViewController(vc: ImageViewerViewController) {
+    public func wireToViewController(vc: CPImageViewerViewController) {
         
         imageViewerVC = vc
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(ImageViewerInteractiveTransition.handlePan(_:)))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(CPImageViewerInteractiveTransition.handlePan(_:)))
         panGesture.maximumNumberOfTouches = 1
         panGesture.minimumNumberOfTouches = 1
         panGesture.delegate = self
@@ -66,7 +66,7 @@ public class ImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
         containerView.addSubview(backgroundView)
         
         let fromImageView = imageViewerVC.animationImageView
-        toImageView = (toVC as! ImageControllerProtocol).animationImageView
+        toImageView = (toVC as! CPImageControllerProtocol).animationImageView
         fromFrame = fromImageView.convertRect(fromImageView.bounds, toView: containerView)
         toFrame = toImageView.convertRect(toImageView.bounds, toView: containerView)
     

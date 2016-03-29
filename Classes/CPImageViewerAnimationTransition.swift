@@ -8,11 +8,11 @@
 
 import UIKit
 
-public protocol ImageControllerProtocol {
+public protocol CPImageControllerProtocol {
     var animationImageView: UIImageView! { get }
 }
 
-public class ImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedTransitioning {
+public class CPImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
     public var isBack = false
     
@@ -46,8 +46,8 @@ public class ImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedT
         backgroundView.backgroundColor = UIColor.blackColor()
         containerView.addSubview(backgroundView)
         
-        let fromImageView = (fromVC as! ImageControllerProtocol).animationImageView
-        let toImageView = (toVC as! ImageControllerProtocol).animationImageView
+        let fromImageView = (fromVC as! CPImageControllerProtocol).animationImageView
+        let toImageView = (toVC as! CPImageControllerProtocol).animationImageView
         let fromFrame = fromImageView.convertRect(fromImageView.bounds, toView: containerView)
         let toFrame = toImageView.convertRect(toImageView.bounds, toView: containerView)
         

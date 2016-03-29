@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode7.2
+osx_image: xcode7.3
 before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/CPImageViewer.mobileprovision.enc
   -d -a -out scripts/profile/CPImageViewer.mobileprovision

@@ -13,7 +13,7 @@ public enum CPImageViewerStyle {
     case Push
 }
 
-public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate, ImageControllerProtocol {
+public class CPImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate, CPImageControllerProtocol {
     public var animationImageView: UIImageView!
     
     /// The viewer style. Defaults to Presentation
@@ -33,11 +33,14 @@ public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, 
     
     private var scrollView: UIScrollView!
     
+    private var isViewDidAppear = false
+    
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         //Solving the error of location of image view after rotating device and returning to previous controller.
         self.modalPresentationStyle = .OverFullScreen
+        self.modalPresentationCapturesStatusBarAppearance = true
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -66,15 +69,22 @@ public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, 
         scrollView.addSubview(animationImageView)
         
         if viewerStyle == .Presentation {
-            let tap = UITapGestureRecognizer(target: self, action: #selector(ImageViewerViewController.dismiss))
+            let tap = UITapGestureRecognizer(target: self, action: #selector(CPImageViewerViewController.dismiss))
             scrollView.addGestureRecognizer(tap)
         } else if let title = rightBarItemTitle {
-            let rightItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: #selector(ImageViewerViewController.rightBarItemAction))
+            let rightItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: #selector(CPImageViewerViewController.rightBarItemAction))
             self.navigationItem.rightBarButtonItem = rightItem
         } else if let image = rightBarItemImage {
-            let rightItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: #selector(ImageViewerViewController.rightBarItemAction))
+            let rightItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: #selector(CPImageViewerViewController.rightBarItemAction))
             self.navigationItem.rightBarButtonItem = rightItem
         }
+    }
+    
+    public override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        isViewDidAppear = true
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     public override func viewDidLayoutSubviews() {
@@ -85,7 +95,7 @@ public class ImageViewerViewController: UIViewController, UIScrollViewDelegate, 
     }
     
     public override func prefersStatusBarHidden() -> Bool {
-        if viewerStyle == .Presentation {
+        if viewerStyle == .Presentation && isViewDidAppear {
             return true
         }
         

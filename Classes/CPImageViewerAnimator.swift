@@ -8,22 +8,22 @@
 
 import UIKit
 
-public class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
+public class CPImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
 
-    private let animator = ImageViewerAnimationTransition()
-    private let interativeAnimator = ImageViewerInteractiveTransition()
+    private let animator = CPImageViewerAnimationTransition()
+    private let interativeAnimator = CPImageViewerInteractiveTransition()
 
     //MARK: - UIViewControllerTransitioningDelegate
     public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if source is ImageControllerProtocol && presenting is ImageControllerProtocol && presented is ImageViewerViewController {
+        if source is CPImageControllerProtocol && presenting is CPImageControllerProtocol && presented is CPImageViewerViewController {
             if let navi = presenting as? UINavigationController {
-                navi.animationImageView = (source as! ImageControllerProtocol).animationImageView
+                navi.animationImageView = (source as! CPImageControllerProtocol).animationImageView
             } else if let tabBarVC = presenting as? UITabBarController {
-                tabBarVC.animationImageView = (source as! ImageControllerProtocol).animationImageView
+                tabBarVC.animationImageView = (source as! CPImageControllerProtocol).animationImageView
             }
             
-            interativeAnimator.wireToViewController(presented as! ImageViewerViewController)
+            interativeAnimator.wireToViewController(presented as! CPImageViewerViewController)
             interativeAnimator.isPresented = true
             animator.isBack = false
             return animator
@@ -34,7 +34,7 @@ public class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIVi
     
     public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if dismissed is ImageViewerViewController {
+        if dismissed is CPImageViewerViewController {
             animator.isBack = true
             return animator
         }
@@ -49,12 +49,12 @@ public class ImageViewerAnimator: NSObject, UINavigationControllerDelegate, UIVi
     //MARK: - UINavigationDelegate
     public func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if operation == .Push && fromVC is ImageControllerProtocol && toVC is ImageViewerViewController {
-            interativeAnimator.wireToViewController(toVC as! ImageViewerViewController)
+        if operation == .Push && fromVC is CPImageControllerProtocol && toVC is CPImageViewerViewController {
+            interativeAnimator.wireToViewController(toVC as! CPImageViewerViewController)
             interativeAnimator.isPresented = false
             animator.isBack = false
             return animator
-        } else if operation == .Pop  && fromVC is ImageViewerViewController && toVC is ImageControllerProtocol {
+        } else if operation == .Pop  && fromVC is CPImageViewerViewController && toVC is CPImageControllerProtocol {
             animator.isBack = true
             return animator
         }

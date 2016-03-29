@@ -25,6 +25,9 @@ The simplest way to install this library is to copy `Classes/*.swift` to your pr
 You can also install this library using CocoaPods. Just add this line to your Podfile:
 
 ``` ruby
+platform :ios, '8.0'
+use_frameworks!
+
 pod 'CPImageViewer'
 ```
 
@@ -61,31 +64,41 @@ public var rightAction: ((Void) -> (Void))?
 
 ## Usage
 
-Conforming to  *ImageControllerProtocol* protocol
+It's very easy to use **CPImageViewer**.
+
+Firstly, conforming to  *CPImageControllerProtocol* protocol and initializing the *animationImageView* or assigning it an image view.
 ``` swift
 class ViewController: UIViewController, ImageControllerProtocol {
   var animationImageView: UIImageView!
-  var imageViewer = ImageViewerAnimator()
+}
+
+override func viewDidLoad() {
+    animationImageView = UIImageView()
+	animationImageView.frame = <#frame#>
+	animationImageView.image = <#image#>
+	self.view.addSubview(animationImageView)
 }
 ```
 
-Presentation
+Then, presenting the *CPImageViewerViewController*
 
 ``` swift
-let controller = ImageViewerViewController()
-controller.transitioningDelegate = imageViewer
+let controller = CPImageViewerViewController()
+controller.transitioningDelegate = CPImageViewerAnimator()
 controller.image = animationImageView.image 
 self.presentViewController(controller, animated: true, completion: nil)
 ```
 
-or Push
+or pushing the *CPImageViewerViewController*
 
 ``` swift
 override func viewDidLoad() {
-    self.navigationController?.delegate = imageViewer
+    self.navigationController?.delegate = CPImageViewerAnimator()
 }
 
+let controller = CPImageViewerViewController()
 controller.viewerStyle = .Push
+controller.image = animationImageView.image 
 controller.title = "CPImageViewer"
 self.navigationController?.pushViewController(controller, animated: true)
 ```
@@ -97,7 +110,6 @@ self.navigationController?.pushViewController(controller, animated: true)
 * Swift 2.2
 * Xcode 7.3
 * iOS 8+
-
 
 ## License
 

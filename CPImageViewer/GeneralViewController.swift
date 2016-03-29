@@ -8,30 +8,28 @@
 
 import UIKit
 
-class GeneralViewController: UIViewController, ImageControllerProtocol {
+class GeneralViewController: UIViewController, CPImageControllerProtocol {
     
     var isPresented = false
     
     @IBOutlet var animationImageView: UIImageView!
-    var imageViewer = ImageViewerAnimator()
+    var animator = CPImageViewerAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //self.view.backgroundColor = UIColor.greenColor()
     
         let tap = UITapGestureRecognizer(target: self, action: #selector(GeneralViewController.tap))
         animationImageView.addGestureRecognizer(tap)
         animationImageView.userInteractionEnabled = true
         
         if !isPresented {
-            self.navigationController?.delegate = imageViewer
+            self.navigationController?.delegate = animator
         }
     }
 
     func tap() {
-        let controller = ImageViewerViewController()
-        controller.transitioningDelegate = imageViewer
+        let controller = CPImageViewerViewController()
+        controller.transitioningDelegate = animator
         controller.image = animationImageView.image
         
         if !isPresented {
