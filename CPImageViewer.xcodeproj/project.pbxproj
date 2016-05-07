@@ -18,6 +18,7 @@
 		353941891CDDF57B0044FD7C /* UINavigationController+AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351ECFAB1C9AD7010023E2CE /* UINavigationController+AnimationImageView.swift */; };
 		3539418A1CDDF57B0044FD7C /* UITabBarController+AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543A83F1CAAA36E00B3AE3C /* UITabBarController+AnimationImageView.swift */; };
 		35B8E52F1CDDF81900940716 /* CPImageViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B8E52A1CDDF78E00940716 /* CPImageViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35B8E5341CDE23E100940716 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35B8E5311CDDF94900940716 /* Info.plist */; };
 		35DEA4151C8BAC3000869EDC /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DEA4141C8BAC3000869EDC /* CollectionViewCell.swift */; };
 		9501F8F61C81467C004A8814 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9501F8F51C81467C004A8814 /* CollectionViewController.swift */; };
 		95C55F781C81304900BD0E89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C55F761C81304900BD0E89 /* ViewController.swift */; };
@@ -78,9 +79,9 @@
 		3553DFA21C8EFE4000BCB077 /* CPImageViewerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPImageViewerAnimator.swift; sourceTree = "<group>"; };
 		3553DFA31C8EFE4000BCB077 /* CPImageViewerInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPImageViewerInteractiveTransition.swift; sourceTree = "<group>"; };
 		3553DFA41C8EFE4000BCB077 /* CPImageViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPImageViewerViewController.swift; sourceTree = "<group>"; };
-		35B8E5291CDDF78E00940716 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Classes/Info.plist; sourceTree = SOURCE_ROOT; };
 		35B8E52A1CDDF78E00940716 /* CPImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPImageViewer.h; path = Classes/CPImageViewer.h; sourceTree = SOURCE_ROOT; };
 		35B8E5311CDDF94900940716 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35B8E5351CDE244700940716 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Classes/Info.plist; sourceTree = SOURCE_ROOT; };
 		35DEA4141C8BAC3000869EDC /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		9501F8F51C81467C004A8814 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		95C55F761C81304900BD0E89 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,7 +124,7 @@
 		353941681CDDF47F0044FD7C /* CPImageViewer */ = {
 			isa = PBXGroup;
 			children = (
-				35B8E5291CDDF78E00940716 /* Info.plist */,
+				35B8E5351CDE244700940716 /* Info.plist */,
 				35B8E52A1CDDF78E00940716 /* CPImageViewer.h */,
 				3553DFA01C8EFE4000BCB077 /* Classes */,
 			);
@@ -212,6 +213,7 @@
 				353941621CDDF47E0044FD7C /* Sources */,
 				353941631CDDF47E0044FD7C /* Frameworks */,
 				353941641CDDF47E0044FD7C /* Headers */,
+				35B8E5361CDE245700940716 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -310,10 +312,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		35B8E5361CDE245700940716 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		95D3A30D1C71E26F003A750C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B8E5341CDE23E100940716 /* Info.plist in Resources */,
 				95C55F841C81394800BD0E89 /* Main.storyboard in Resources */,
 				95D3A31D1C71E270003A750C /* LaunchScreen.storyboard in Resources */,
 				95D3A31A1C71E270003A750C /* Assets.xcassets in Resources */,
@@ -410,9 +420,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CPImageViewer/Info.plist;
+				INFOPLIST_FILE = Classes/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zte.CPImageViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -434,9 +444,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CPImageViewer/Info.plist;
+				INFOPLIST_FILE = Classes/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zte.CPImageViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
