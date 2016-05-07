@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CPImageViewer
 
 class GeneralViewController: UIViewController, CPImageControllerProtocol {
     

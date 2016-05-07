@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CPImageViewer
 
 private let reuseIdentifier = "Cell"
 
