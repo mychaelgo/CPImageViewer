@@ -37,7 +37,23 @@ Then import library module like so:
 import CPImageViewer
 ```
 
+### Carthage
 
+```swift
+github "cp3hnu/CPImageViewer"
+```
+
+*   Drag and drop *CPImageViewer.framework* from /Carthage/Build/iOS/ to Linked frameworks and libraries in Xcode (Project>Target>General>Linked frameworks and libraries)
+
+*   Add new run script
+
+     ```
+    /usr/local/bin/carthage copy-frameworks
+     ```
+
+*   Add Input files *$(SRCROOT)/Carthage/Build/iOS/CPImageViewer.framework*
+
+    ​
 
 ## Properties
 
