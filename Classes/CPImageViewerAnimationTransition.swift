@@ -8,12 +8,10 @@
 
 import UIKit
 
-public protocol CPImageControllerProtocol {
-    var animationImageView: UIImageView! { get }
-}
-
 public class CPImageViewerAnimationTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
+    
+    /// Be false when Push or Present, and true when Pop or Dismiss
     public var isBack = false
     
     public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {

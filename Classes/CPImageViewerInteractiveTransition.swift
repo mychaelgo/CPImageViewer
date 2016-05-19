@@ -9,13 +9,16 @@
 import UIKit
 
 public class CPImageViewerInteractiveTransition: NSObject, UIViewControllerInteractiveTransitioning, UIGestureRecognizerDelegate {
+    
+    /// Be true when Present, and false when Push
     public  var isPresented = true
+    
+    /// Whether is interaction in progress. Default is false
+    private(set) public var interactionInProgress = false
     
     private weak var imageViewerVC: CPImageViewerViewController!
     private var distance = UIScreen.mainScreen().bounds.size.height/2
-    public  var interactionInProgress = false
     private var shouldCompleteTransition = false
-    
     private var startInteractive = false
     private var transitionContext: UIViewControllerContextTransitioning?
     private var toVC: UIViewController!
@@ -26,9 +29,12 @@ public class CPImageViewerInteractiveTransition: NSObject, UIViewControllerInter
     private var toFrame: CGRect = CGRectZero
     private var style = UIModalPresentationStyle.FullScreen
     
-    //MARK: - Install pan gesture recognizer
+    /**
+     Install the pan gesture recognizer on view of *vc*
+     
+     - parameter vc: The *CPImageViewerViewController* view controller
+     */
     public func wireToViewController(vc: CPImageViewerViewController) {
-        
         imageViewerVC = vc
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(CPImageViewerInteractiveTransition.handlePan(_:)))
         panGesture.maximumNumberOfTouches = 1

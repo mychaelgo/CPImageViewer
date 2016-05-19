@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3518AE9A1CE4C7BB00F86184 /* CPImageControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3518AE991CE4C7BB00F86184 /* CPImageControllerProtocol.swift */; };
 		353941711CDDF47F0044FD7C /* CPImageViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353941671CDDF47E0044FD7C /* CPImageViewer.framework */; };
 		353941781CDDF47F0044FD7C /* CPImageViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353941771CDDF47F0044FD7C /* CPImageViewerTests.swift */; };
 		3539417C1CDDF47F0044FD7C /* CPImageViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353941671CDDF47E0044FD7C /* CPImageViewer.framework */; };
@@ -15,10 +16,7 @@
 		353941861CDDF57B0044FD7C /* CPImageViewerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA21C8EFE4000BCB077 /* CPImageViewerAnimator.swift */; };
 		353941871CDDF57B0044FD7C /* CPImageViewerAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA11C8EFE4000BCB077 /* CPImageViewerAnimationTransition.swift */; };
 		353941881CDDF57B0044FD7C /* CPImageViewerInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3553DFA31C8EFE4000BCB077 /* CPImageViewerInteractiveTransition.swift */; };
-		353941891CDDF57B0044FD7C /* UINavigationController+AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351ECFAB1C9AD7010023E2CE /* UINavigationController+AnimationImageView.swift */; };
-		3539418A1CDDF57B0044FD7C /* UITabBarController+AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3543A83F1CAAA36E00B3AE3C /* UITabBarController+AnimationImageView.swift */; };
 		35B8E52F1CDDF81900940716 /* CPImageViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B8E52A1CDDF78E00940716 /* CPImageViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35B8E5341CDE23E100940716 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35B8E5311CDDF94900940716 /* Info.plist */; };
 		35DEA4151C8BAC3000869EDC /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DEA4141C8BAC3000869EDC /* CollectionViewCell.swift */; };
 		9501F8F61C81467C004A8814 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9501F8F51C81467C004A8814 /* CollectionViewController.swift */; };
 		95C55F781C81304900BD0E89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C55F761C81304900BD0E89 /* ViewController.swift */; };
@@ -69,12 +67,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		351ECFAB1C9AD7010023E2CE /* UINavigationController+AnimationImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+AnimationImageView.swift"; sourceTree = "<group>"; };
+		3518AE991CE4C7BB00F86184 /* CPImageControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPImageControllerProtocol.swift; sourceTree = "<group>"; };
 		353941671CDDF47E0044FD7C /* CPImageViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CPImageViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		353941701CDDF47F0044FD7C /* CPImageViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CPImageViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		353941771CDDF47F0044FD7C /* CPImageViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPImageViewerTests.swift; sourceTree = "<group>"; };
 		353941791CDDF47F0044FD7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3543A83F1CAAA36E00B3AE3C /* UITabBarController+AnimationImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBarController+AnimationImageView.swift"; sourceTree = "<group>"; };
 		3553DFA11C8EFE4000BCB077 /* CPImageViewerAnimationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPImageViewerAnimationTransition.swift; sourceTree = "<group>"; };
 		3553DFA21C8EFE4000BCB077 /* CPImageViewerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPImageViewerAnimator.swift; sourceTree = "<group>"; };
 		3553DFA31C8EFE4000BCB077 /* CPImageViewerInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPImageViewerInteractiveTransition.swift; sourceTree = "<group>"; };
@@ -147,8 +144,7 @@
 				3553DFA21C8EFE4000BCB077 /* CPImageViewerAnimator.swift */,
 				3553DFA11C8EFE4000BCB077 /* CPImageViewerAnimationTransition.swift */,
 				3553DFA31C8EFE4000BCB077 /* CPImageViewerInteractiveTransition.swift */,
-				351ECFAB1C9AD7010023E2CE /* UINavigationController+AnimationImageView.swift */,
-				3543A83F1CAAA36E00B3AE3C /* UITabBarController+AnimationImageView.swift */,
+				3518AE991CE4C7BB00F86184 /* CPImageControllerProtocol.swift */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -269,7 +265,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = cp3hnu;
 				TargetAttributes = {
 					353941661CDDF47E0044FD7C = {
@@ -323,7 +319,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35B8E5341CDE23E100940716 /* Info.plist in Resources */,
 				95C55F841C81394800BD0E89 /* Main.storyboard in Resources */,
 				95D3A31D1C71E270003A750C /* LaunchScreen.storyboard in Resources */,
 				95D3A31A1C71E270003A750C /* Assets.xcassets in Resources */,
@@ -338,9 +333,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				353941881CDDF57B0044FD7C /* CPImageViewerInteractiveTransition.swift in Sources */,
-				353941891CDDF57B0044FD7C /* UINavigationController+AnimationImageView.swift in Sources */,
 				353941871CDDF57B0044FD7C /* CPImageViewerAnimationTransition.swift in Sources */,
-				3539418A1CDDF57B0044FD7C /* UITabBarController+AnimationImageView.swift in Sources */,
+				3518AE9A1CE4C7BB00F86184 /* CPImageControllerProtocol.swift in Sources */,
 				353941851CDDF57A0044FD7C /* CPImageViewerViewController.swift in Sources */,
 				353941861CDDF57B0044FD7C /* CPImageViewerAnimator.swift in Sources */,
 			);

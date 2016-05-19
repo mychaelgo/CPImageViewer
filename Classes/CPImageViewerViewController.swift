@@ -9,14 +9,19 @@
 import UIKit
 
 public enum CPImageViewerStyle {
+    /// Present style
     case Presentation
+    
+    /// Navigation style
     case Push
 }
 
 public class CPImageViewerViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate, CPImageControllerProtocol {
+    
+    /// The animation imageView conforming to `CPImageControllerProtocol`
     public var animationImageView: UIImageView!
     
-    /// The viewer style. Defaults to Presentation
+    /// The viewer style. Defaults to **Presentation**
     public var viewerStyle = CPImageViewerStyle.Presentation
     
     /// The image of animation image view
@@ -79,7 +84,7 @@ public class CPImageViewerViewController: UIViewController, UIScrollViewDelegate
             self.navigationItem.rightBarButtonItem = rightItem
         }
     }
-    
+
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -139,7 +144,7 @@ public class CPImageViewerViewController: UIViewController, UIScrollViewDelegate
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //MARK:- UIScrollViewDelegate
+    //MARK: - UIScrollViewDelegate
     public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return animationImageView
     }
