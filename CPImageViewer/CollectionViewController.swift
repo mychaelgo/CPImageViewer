@@ -21,22 +21,22 @@ class CollectionViewController: UICollectionViewController, CPImageControllerPro
         super.viewDidLoad()
 
         if !isPresented {
-            self.navigationController?.delegate = animator
+            navigationController?.delegate = animator
         }
     }
 
     // MARK: UICollectionViewDataSource
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
     
         // Configure the cell
         cell.imageView.image = UIImage(named: "\(indexPath.item + 1)")
@@ -46,9 +46,9 @@ class CollectionViewController: UICollectionViewController, CPImageControllerPro
     }
 
     // MARK: UICollectionViewDelegate
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
         
         animationImageView = cell.imageView
         
@@ -61,11 +61,11 @@ class CollectionViewController: UICollectionViewController, CPImageControllerPro
         controller.image = animationImageView.image
         
         if !isPresented {
-            controller.viewerStyle = .Push
+            controller.viewerStyle = .push
             controller.title = "CPImageViewer"
-            self.navigationController?.pushViewController(controller, animated: true)
+            navigationController?.pushViewController(controller, animated: true)
         } else {
-            self.presentViewController(controller, animated: true, completion: nil)
+            present(controller, animated: true, completion: nil)
         }
     }
 

@@ -123,8 +123,8 @@ self.navigationController?.pushViewController(controller, animated: true)
 
 ## Requirements
 
-* Swift 2.2
-* Xcode 7.3
+* Swift 3.0+
+* Xcode 8.0+
 * iOS 8+
 
 ## License

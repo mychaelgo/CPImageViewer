@@ -21,10 +21,10 @@ class GeneralViewController: UIViewController, CPImageControllerProtocol {
     
         let tap = UITapGestureRecognizer(target: self, action: #selector(GeneralViewController.tap))
         animationImageView.addGestureRecognizer(tap)
-        animationImageView.userInteractionEnabled = true
+        animationImageView.isUserInteractionEnabled = true
         
         if !isPresented {
-            self.navigationController?.delegate = animator
+            navigationController?.delegate = animator
         }
     }
 
@@ -34,11 +34,11 @@ class GeneralViewController: UIViewController, CPImageControllerProtocol {
         controller.image = animationImageView.image
         
         if !isPresented {
-            controller.viewerStyle = .Push
+            controller.viewerStyle = .push
             controller.title = "CPImageViewer"
-            self.navigationController?.pushViewController(controller, animated: true)
+            navigationController?.pushViewController(controller, animated: true)
         } else {
-            self.presentViewController(controller, animated: true, completion: nil)
+            present(controller, animated: true, completion: nil)
         }
     }
 }

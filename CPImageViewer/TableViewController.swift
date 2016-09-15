@@ -21,21 +21,21 @@ class TableViewController: UITableViewController, CPImageControllerProtocol {
         super.viewDidLoad()
         
         if !isPresented {
-            self.navigationController?.delegate = animator
+            navigationController?.delegate = animator
         }
     }
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
 
         let name = "\(indexPath.row + 1)"
         let imageView = cell.contentView.viewWithTag(100) as! UIImageView
@@ -46,9 +46,9 @@ class TableViewController: UITableViewController, CPImageControllerProtocol {
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        let cell = tableView.cellForRow(at: indexPath)
         let imageView = cell!.contentView.viewWithTag(100) as! UIImageView
         
         animationImageView = imageView
@@ -62,12 +62,12 @@ class TableViewController: UITableViewController, CPImageControllerProtocol {
         controller.image = animationImageView.image
         
         if !isPresented {
-            controller.viewerStyle = .Push
+            controller.viewerStyle = .push
             controller.title = "CPImageViewer"
             
-            self.navigationController?.pushViewController(controller, animated: true)
+            navigationController?.pushViewController(controller, animated: true)
         } else {
-            self.presentViewController(controller, animated: true, completion: nil)
+            present(controller, animated: true, completion: nil)
         }
     }
 

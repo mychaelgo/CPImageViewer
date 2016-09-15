@@ -14,7 +14,7 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.title = "CPImageViewer Demo"
+        title = "CPImageViewer Demo"
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,16 +22,16 @@ class ViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")!
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         switch indexPath.row {
         case 0:
             cell.textLabel?.text = "General"
@@ -49,7 +49,7 @@ class ViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return "Present"
@@ -58,7 +58,7 @@ class ViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         var isPresented = false
         if indexPath.section == 0 {
@@ -68,17 +68,17 @@ class ViewController: UITableViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var controller: UIViewController
         if indexPath.row == 0 {
-            controller = storyboard.instantiateViewControllerWithIdentifier("GeneralVC")
+            controller = storyboard.instantiateViewController(withIdentifier: "GeneralVC")
             (controller as! GeneralViewController).isPresented = isPresented
         } else if indexPath.row == 1 {
-            controller = storyboard.instantiateViewControllerWithIdentifier("TableVC")
+            controller = storyboard.instantiateViewController(withIdentifier: "TableVC")
             (controller as! TableViewController).isPresented = isPresented
         } else {
-            controller = storyboard.instantiateViewControllerWithIdentifier("CollectionVC")
+            controller = storyboard.instantiateViewController(withIdentifier: "CollectionVC")
             (controller as! CollectionViewController).isPresented = isPresented
         }
         
-        self.navigationController?.pushViewController(controller, animated: true)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
