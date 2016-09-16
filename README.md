@@ -61,7 +61,7 @@ These properties is global and applied to the whole project.
 
 ``` swift
 /// The viewer style. Defaults to Presentation
-public var viewerStyle = CPImageViewerStyle.Presentation
+public var viewerStyle = CPImageViewerStyle.presentation
 
 /// The image of animation image view
 public var image: UIImage?
@@ -113,7 +113,7 @@ override func viewDidLoad() {
 }
 
 let controller = CPImageViewerViewController()
-controller.viewerStyle = .Push
+controller.viewerStyle = .push
 controller.image = animationImageView.image 
 controller.title = "CPImageViewer"
 self.navigationController?.pushViewController(controller, animated: true)
