@@ -94,7 +94,7 @@ open class CPImageViewerInteractiveTransition: NSObject, UIViewControllerInterac
             if isPresented {
                 imageViewerVC.dismiss(animated: true, completion: nil)
             } else {
-                imageViewerVC.navigationController?.popViewController(animated: true)
+                _ = imageViewerVC.navigationController?.popViewController(animated: true)
             }
         
         case .changed:
