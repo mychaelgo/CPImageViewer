@@ -102,7 +102,7 @@ Then, presenting the *CPImageViewerViewController*
 let controller = CPImageViewerViewController()
 controller.transitioningDelegate = CPImageViewerAnimator()
 controller.image = animationImageView.image 
-self.presentViewController(controller, animated: true, completion: nil)
+self.present(controller, animated: true, completion: nil)
 ```
 
 or pushing the *CPImageViewerViewController*
