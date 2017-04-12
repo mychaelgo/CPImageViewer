@@ -4,13 +4,13 @@ Viewing a single image using transition animation. Supporting presentation and p
 
 ## Screenshot
 
-####Present & Dismiss
+##### Present & Dismiss
 
 ![](Screenshot1.gif)
 
 
 
-####Push & Pop
+##### Push & Pop
 
 ![](Screenshot2.gif)
 
