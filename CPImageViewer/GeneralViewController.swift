@@ -28,7 +28,7 @@ class GeneralViewController: UIViewController, CPImageControllerProtocol {
         }
     }
 
-    func tap() {
+    @objc func tap() {
         let controller = CPImageViewerViewController()
         controller.transitioningDelegate = animator
         controller.image = animationImageView.image

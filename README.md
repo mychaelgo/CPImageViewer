@@ -20,23 +20,6 @@ Viewing a single image using transition animation. Supporting presentation and p
 
 The simplest way to install this library is to copy `Classes/*.swift` to your project.
 
-### CocoaPods
-
-You can also install this library using CocoaPods. Just add this line to your Podfile:
-
-``` ruby
-platform :ios, '8.0'
-use_frameworks!
-
-pod 'CPImageViewer'
-```
-
-Then import library module like so:
-
-``` swift
-import CPImageViewer
-```
-
 ### Carthage
 
 ```swift
@@ -46,6 +29,8 @@ github "cp3hnu/CPImageViewer"
 *   Drag and drop *CPImageViewer.framework* from /Carthage/Build/iOS/ to Linked frameworks and libraries in Xcode (Project>Target>General>Linked frameworks and libraries)
 
 *   Add new run script
+
+     ```
 
      ```
     /usr/local/bin/carthage copy-frameworks
@@ -123,8 +108,8 @@ self.navigationController?.pushViewController(controller, animated: true)
 
 ## Requirements
 
-* Swift 3.0+
-* Xcode 8.0+
+* Swift 4.0+
+* Xcode 9.0+
 * iOS 8+
 
 ## License

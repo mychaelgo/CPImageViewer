@@ -34,7 +34,7 @@ open class CPImageViewerViewController: UIViewController, UIScrollViewDelegate, 
     open var rightBarItemImage: UIImage?
     
     /// The action of *navigationItem.rightBarButtonItem* when viewerStyle is Push
-    open var rightAction: ((Void) -> (Void))?
+    open var rightAction: (() -> Void)?
     
     fileprivate var scrollView: UIScrollView!
     
